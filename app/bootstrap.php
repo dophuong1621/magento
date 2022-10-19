@@ -7,8 +7,11 @@
 /**
  * Environment initialization
  */
+
+use Magento\Framework\App\Bootstrap;
+
 error_reporting(E_ALL);
-if (in_array('phar', \stream_get_wrappers())) {
+if (in_array('phar', stream_get_wrappers())) {
     stream_wrapper_unregister('phar');
 }
 #ini_set('display_errors', 1);
@@ -42,7 +45,7 @@ if (!defined('PHP_VERSION_ID') || PHP_VERSION_ID < 80000) {
 
 require_once __DIR__ . '/autoload.php';
 // Sets default autoload mappings, may be overridden in Bootstrap::create
-\Magento\Framework\App\Bootstrap::populateAutoloader(BP, []);
+Bootstrap::populateAutoloader(BP, []);
 
 /* Custom umask value may be provided in optional mage_umask file in root */
 $umaskFile = BP . '/magento_umask';
@@ -85,3 +88,10 @@ date_default_timezone_set('UTC');
 /*  For data consistency between displaying (printing) and serialization a float number */
 ini_set('precision', 14);
 ini_set('serialize_precision', 14);
+
+#Phuong them
+error_reporting(E_ALL);
+
+ini_set('display_errors', 1);
+
+$_SERVER['MAGE_MODE'] = 'developer';
