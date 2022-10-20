@@ -7,14 +7,14 @@
 
 namespace Tigren\Grid\Plugin;
 
-use Dev\Grid\Ui\DataProvider\Category\ListingDataProvider as CategoryDataProvider;
+use Tigren\Grid\Ui\DataProvider\Category\ListingDataProvider as CategoryDataProvider;
 use Magento\Eav\Api\AttributeRepositoryInterface;
 use Magento\Framework\App\ProductMetadataInterface;
 use Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult;
 
 /**
  * Class AddAttributesToUiDataProvider
- * @package Dev\Grid\Plugin
+ * @package Tigren\Grid\Plugin
  */
 class AddAttributesToUiDataProvider
 {
@@ -63,13 +63,13 @@ class AddAttributesToUiDataProvider
         $attribute = $this->attributeRepository->get('catalog_category', 'name');
 
         $result->getSelect()->joinLeft(
-            ['devgridname' => $attribute->getBackendTable()],
-            'devgridname.' . $column . ' = main_table.' . $column . ' AND devgridname.attribute_id = '
+            ['tigrengridname' => $attribute->getBackendTable()],
+            'tigrengridname.' . $column . ' = main_table.' . $column . ' AND tigrengridname.attribute_id = '
             . $attribute->getAttributeId(),
-            ['name' => 'devgridname.value']
+            ['name' => 'tigrengridname.value']
         );
 
-        $result->getSelect()->where('devgridname.value LIKE "B%"');
+        $result->getSelect()->where('tigrengridname.value LIKE "B%"');
 
         return $result;
     }

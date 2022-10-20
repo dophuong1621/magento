@@ -9,11 +9,13 @@
          xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
     <argument name="data" xsi:type="array">
         <item name="js_config" xsi:type="array">
-            <item name="provider" xsi:type="string">dev_grid_category_listing.dev_grid_category_listing_data_source
+            <item name="provider" xsi:type="string">
+                tigren_grid_category_listing.tigren_grid_category_listing_data_source
             </item>
-            <item name="deps" xsi:type="string">dev_grid_category_listing.dev_grid_category_listing_data_source</item>
+            <item name="deps" xsi:type="string">tigren_grid_category_listing.tigren_grid_category_listing_data_source
+            </item>
         </item>
-        <item name="spinner" xsi:type="string">dev_grid_category_columns</item>
+        <item name="spinner" xsi:type="string">tigren_grid_category_columns</item>
         <item name="buttons" xsi:type="array">
             <item name="add" xsi:type="array">
                 <item name="name" xsi:type="string">add</item>
@@ -23,10 +25,10 @@
             </item>
         </item>
     </argument>
-    <dataSource name="dev_grid_category_listing_data_source">
+    <dataSource name="tigren_grid_category_listing_data_source">
         <argument name="dataProvider" xsi:type="configurableObject">
-            <argument name="class" xsi:type="string">Dev\Grid\Ui\DataProvider\Category\ListingDataProvider</argument>
-            <argument name="name" xsi:type="string">dev_grid_category_listing_data_source</argument>
+            <argument name="class" xsi:type="string">Tigren\Grid\Ui\DataProvider\Category\ListingDataProvider</argument>
+            <argument name="name" xsi:type="string">tigren_grid_category_listing_data_source</argument>
             <argument name="primaryFieldName" xsi:type="string">entity_id</argument>
             <argument name="requestFieldName" xsi:type="string">entity_id</argument>
             <argument name="data" xsi:type="array">
@@ -51,7 +53,7 @@
             <argument name="data" xsi:type="array">
                 <item name="data" xsi:type="array">
                     <item name="selectProvider" xsi:type="string">
-                        dev_grid_category_listing.dev_grid_category_listing.dev_grid_category_columns.ids
+                        tigren_grid_category_listing.tigren_grid_category_listing.tigren_grid_category_columns.ids
                     </item>
                     <item name="displayArea" xsi:type="string">bottom</item>
                     <item name="component" xsi:type="string">Magento_Ui/js/grid/tree-massactions</item>
@@ -63,7 +65,7 @@
                     <item name="config" xsi:type="array">
                         <item name="type" xsi:type="string">delete</item>
                         <item name="label" xsi:type="string" translate="true">Delete</item>
-                        <item name="url" xsi:type="url" path="dev_grid/category/massDelete"/>
+                        <item name="url" xsi:type="url" path="tigren_grid/category/massDelete"/>
                         <item name="confirm" xsi:type="array">
                             <item name="title" xsi:type="string" translate="true">Delete items</item>
                             <item name="message" xsi:type="string" translate="true">Are you sure you want to delete
@@ -90,7 +92,7 @@
         </filters>
         <paging name="listing_paging"/>
     </listingToolbar>
-    <columns name="dev_grid_category_columns">
+    <columns name="tigren_grid_category_columns">
         <selectionsColumn name="ids">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
@@ -127,7 +129,7 @@
                 <label translate="true">Created</label>
             </settings>
         </column>
-        <actionsColumn name="actions" class="Dev\Grid\Ui\Component\Category\Listing\Column\Actions" sortOrder="200">
+        <actionsColumn name="actions" class="Tigren\Grid\Ui\Component\Category\Listing\Column\Actions" sortOrder="200">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="resizeEnabled" xsi:type="boolean">false</item>

@@ -5,13 +5,13 @@
  * @license   Open Software License ("OSL") v. 3.0
  */
 
-namespace Dev\Grid\Ui\DataProvider\Category;
+namespace Tigren\Grid\Ui\DataProvider\Category;
 
 use Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider;
 
 /**
  * Class ListingDataProvider
- * @package Dev\Grid\Ui\DataProvider\Category
+ * @package Tigren\Grid\Ui\DataProvider\Category
  */
 class ListingDataProvider extends DataProvider
 {

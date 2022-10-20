@@ -5,7 +5,7 @@
  * @license   Open Software License ("OSL") v. 3.0
  */
 
-namespace Dev\Grid\Controller\Adminhtml\Index;
+namespace Tigren\Grid\Controller\Adminhtml\Index;
 
 use Magento\Backend\App\Action;
 use Magento\Backend\App\Action\Context;
@@ -15,7 +15,7 @@ use Magento\Framework\View\Result\PageFactory;
 
 /**
  * Class Index
- * @package Dev\Grid\Controller\Adminhtml\Index
+ * @package Tigren\Grid\Controller\Adminhtml\Index
  */
 class Index extends Action implements HttpGetActionInterface
 {
@@ -33,7 +33,8 @@ class Index extends Action implements HttpGetActionInterface
     public function __construct(
         Context     $context,
         PageFactory $rawFactory
-    ) {
+    )
+    {
         $this->pageFactory = $rawFactory;
 
         parent::__construct($context);

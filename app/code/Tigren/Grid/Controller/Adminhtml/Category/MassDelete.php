@@ -5,7 +5,7 @@
  * @license   Open Software License ("OSL") v. 3.0
  */
 
-namespace Dev\Grid\Controller\Adminhtml\Category;
+namespace Tigren\Grid\Controller\Adminhtml\Category;
 
 use Magento\Backend\App\Action;
 use Magento\Backend\App\Action\Context;
@@ -19,7 +19,7 @@ use Magento\Ui\Component\MassAction\Filter;
 
 /**
  * Class MassDelete
- * @package Dev\Grid\Controller\Adminhtml\Category
+ * @package Tigren\Grid\Controller\Adminhtml\Category
  */
 class MassDelete extends Action implements HttpPostActionInterface
 {
@@ -85,6 +85,6 @@ class MassDelete extends Action implements HttpPostActionInterface
                 __('A total of %1 record(s) have been deleted.', $categoryDeleted)
             );
         }
-        return $this->resultFactory->create(ResultFactory::TYPE_REDIRECT)->setPath('dev_grid/index/index');
+        return $this->resultFactory->create(ResultFactory::TYPE_REDIRECT)->setPath('tigren_grid/index/index');
     }
 }

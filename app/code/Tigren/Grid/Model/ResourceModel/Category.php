@@ -5,13 +5,13 @@
  * @license   Open Software License ("OSL") v. 3.0
  */
 
-namespace Dev\Grid\Model\ResourceModel;
+namespace Tigren\Grid\Model\ResourceModel;
 
 use Magento\Catalog\Model\ResourceModel\Category as BaseCategory;
 
 /**
  * Class Category
- * @package Dev\Grid\Model\ResourceModel
+ * @package Tigren\Grid\Model\ResourceModel
  */
 class Category extends BaseCategory
 {

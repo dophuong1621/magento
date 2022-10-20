@@ -5,7 +5,7 @@
  * @license   Open Software License ("OSL") v. 3.0
  */
 
-namespace Dev\Grid\Ui\Component\Category\Listing\Column;
+namespace Tigren\Grid\Ui\Component\Category\Listing\Column;
 
 use Magento\Framework\Url;
 use Magento\Framework\View\Element\UiComponent\ContextInterface;
@@ -14,7 +14,7 @@ use Magento\Ui\Component\Listing\Columns\Column;
 
 /**
  * Class Actions
- * @package Dev\Grid\Ui\Component\Category\Listing\Column
+ * @package Tigren\Grid\Ui\Component\Category\Listing\Column
  */
 class Actions extends Column
 {
@@ -42,10 +42,11 @@ class Actions extends Column
         ContextInterface   $context,
         UiComponentFactory $uiComponentFactory,
         Url                $urlBuilder,
-        $viewUrl = '',
+                           $viewUrl = '',
         array              $components = [],
         array              $data = []
-    ) {
+    )
+    {
         $this->_urlBuilder = $urlBuilder;
         $this->_viewUrl = $viewUrl;
         parent::__construct($context, $uiComponentFactory, $components, $data);
