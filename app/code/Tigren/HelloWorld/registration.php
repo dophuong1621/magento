@@ -12,3 +12,5 @@ ComponentRegistrar::register(
     'Tigren_HelloWorld',
     __DIR__
 );
+
+

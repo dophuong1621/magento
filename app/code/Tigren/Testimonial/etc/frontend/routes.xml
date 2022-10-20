@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+<?xml version="1.0" ?>
 <!--
   ~ @author    Tigren Solutions <info@tigren.com>
   ~ @copyright Copyright (c) 2022 Tigren Solutions <https://www.tigren.com>. All rights reserved.
@@ -6,11 +6,10 @@
   -->
 
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:noNamespaceSchemaLocation="urn:magento:framework:Module/etc/module.xsd">
-    <module name="Dev_Grid">
-        <sequence>
-            <module name="Magento_Backend"/>
-            <module name="Magento_Ui"/>
-        </sequence>
-    </module>
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:App/etc/routes.xsd">
+    <router id="standard">
+        <route frontName="testimonial" id="testimonial">
+            <module name="Tigren_Testimonial"/>
+        </route>
+    </router>
 </config>
