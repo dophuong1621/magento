@@ -7,6 +7,8 @@
 
 namespace Tigren\Testimonial\Model\ResourceModel\Testimonial;
 
+use Magento\Framework\ObjectManagerInterface;
+
 /**
  * Class CollectionFactory
  * @package Tigren\Testimonial\Model\ResourceModel\Testimonial
@@ -16,7 +18,7 @@ class CollectionFactory
     /**
      * Object Manager instance
      *
-     * @var \Magento\Framework\ObjectManagerInterface
+     * @var ObjectManagerInterface
      */
     protected $_objectManager = null;
 
@@ -30,10 +32,10 @@ class CollectionFactory
     /**
      * Factory constructor
      *
-     * @param \Magento\Framework\ObjectManagerInterface $objectManager
+     * @param ObjectManagerInterface $objectManager
      * @param string $instanceName
      */
-    public function __construct(\Magento\Framework\ObjectManagerInterface $objectManager, $instanceName = '\\Tigren\Testimonial\\Model\\ResourceModel\\Testimonial\\Collection')
+    public function __construct(ObjectManagerInterface $objectManager, $instanceName = '\\Tigren\Testimonial\\Model\\ResourceModel\\Testimonial\\Collection')
     {
         $this->_objectManager = $objectManager;
         $this->_instanceName = $instanceName;
@@ -43,7 +45,7 @@ class CollectionFactory
      * Create class instance with specified parameters
      *
      * @param array $data
-     * @return \Tigren\Testimonial\Model\ResourceModel\Testimonial\Collection
+     * @return Collection
      */
     public function create(array $data = [])
     {

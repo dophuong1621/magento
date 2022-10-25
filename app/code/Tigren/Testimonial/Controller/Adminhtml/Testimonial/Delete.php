@@ -29,9 +29,10 @@ class Delete extends Action
      * @param Testimonial $model
      */
     public function __construct(
-        Action\Context                        $context,
-        Testimonial $model
-    ) {
+        Action\Context $context,
+        Testimonial    $model
+    )
+    {
         parent::__construct($context);
         $this->_model = $model;
     }
@@ -60,7 +61,7 @@ class Delete extends Action
                 $model->load($id);
                 $model->delete();
                 $this->messageManager->addSuccess(__('Testimonial deleted'));
-                return $resultRedirect->setPath('*/*/');
+                return $resultRedirect->setPadeparth('*/*/');
             } catch (Exception $e) {
                 $this->messageManager->addError($e->getMessage());
                 return $resultRedirect->setPath('*/*/edit', ['id' => $id]);

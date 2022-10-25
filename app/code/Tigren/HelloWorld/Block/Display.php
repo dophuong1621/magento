@@ -33,9 +33,9 @@ class Display extends Template
         return __('Hello World');
     }
 
-    public function getPostCollection()
-    {
-        $post = $this->_postFactory->create();
-        return $post->getCollection();
-    }
+//    public function getPostCollection()
+//    {
+//        $post = $this->_postFactory->create();
+//        return $post->getCollection();
+//    }
 }

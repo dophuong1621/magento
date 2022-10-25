@@ -1,44 +1,46 @@
 <?php
+/*
+ * @author    Tigren Solutions <info@tigren.com>
+ * @copyright Copyright (c) 2022 Tigren Solutions <https://www.tigren.com>. All rights reserved.
+ * @license   Open Software License ("OSL") v. 3.0
+ */
 
-namespace Tigren\Testimonial\Controller\Adminhtml\Testimonial;
+namespace Tigren\Testimonial\Controller\Storefront\Testimonial;
 
 use Magento\Backend\App\Action;
-use Magento\Backend\Model\View\Result\Page;
-use Magento\Framework\Registry;
-use Magento\Framework\View\Result\PageFactory;
-use Tigren\Testimonial\Model\Testimonial;
 
 class Edit extends Action
 {
     /**
      * Core registry
      *
-     * @var Registry
+     * @var \Magento\Framework\Registry
      */
     protected $_coreRegistry = null;
 
     /**
-     * @var PageFactory
+     * @var \Magento\Framework\View\Result\PageFactory
      */
     protected $_resultPageFactory;
 
     /**
-     * @var Testimonial
+     * @var \Tigren\Testimonial\Model\Testimonial
      */
     protected $_model;
 
     /**
      * @param Action\Context $context
-     * @param PageFactory $resultPageFactory
-     * @param Registry $registry
-     * @param Testimonial $model
+     * @param \Magento\Framework\View\Result\PageFactory $resultPageFactory
+     * @param \Magento\Framework\Registry $registry
+     * @param \Tigren\Testimonial\Model\Testimonial $model
      */
     public function __construct(
         Action\Context                             $context,
-        PageFactory $resultPageFactory,
-        Registry                $registry,
-        Testimonial      $model
-    ) {
+        \Magento\Framework\View\Result\PageFactory $resultPageFactory,
+        \Magento\Framework\Registry                $registry,
+        \Tigren\Testimonial\Model\Testimonial      $model
+    )
+    {
         $this->_resultPageFactory = $resultPageFactory;
         $this->_coreRegistry = $registry;
         $this->_model = $model;
@@ -56,12 +58,12 @@ class Edit extends Action
     /**
      * Init actions
      *
-     * @return Page
+     * @return \Magento\Backend\Model\View\Result\Page
      */
     protected function _initAction()
     {
         // load layout, set active menu and breadcrumbs
-        /** @var Page $resultPage */
+        /** @var \Magento\Backend\Model\View\Result\Page $resultPage */
         $resultPage = $this->_resultPageFactory->create();
         $resultPage->setActiveMenu('Tigren_Testimonial::testimonial')
             ->addBreadcrumb(__('Testimonial'), __('Testimonial'))
@@ -70,9 +72,9 @@ class Edit extends Action
     }
 
     /**
-     * Edit Testimonial
+     * Edit Department
      *
-     * @return Page
+     * @return \Magento\Backend\Model\View\Result\Page|\Magento\Backend\Model\View\Result\Redirect
      * @SuppressWarnings(PHPMD.NPathComplexity)
      */
     public function execute()
@@ -99,7 +101,7 @@ class Edit extends Action
 
         $this->_coreRegistry->register('testimonial_testimonial', $model);
 
-        /** @var Page $resultPage */
+        /** @var \Magento\Backend\Model\View\Result\Page $resultPage */
         $resultPage = $this->_initAction();
         $resultPage->addBreadcrumb(
             $id ? __('Edit Testimonial') : __('New Testimonial'),

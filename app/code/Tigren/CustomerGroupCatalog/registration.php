@@ -9,6 +9,6 @@ use Magento\Framework\Component\ComponentRegistrar;
 
 ComponentRegistrar::register(
     ComponentRegistrar::MODULE,
-    'Tigren_Testimonial',
+    'Tigren_CustomerGroupCatalog',
     __DIR__
 );

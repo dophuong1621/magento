@@ -27,9 +27,10 @@ class Edit extends Container
      */
     public function __construct(
         \Magento\Backend\Block\Widget\Context $context,
-        Registry           $registry,
+        Registry                              $registry,
         array                                 $data = []
-    ) {
+    )
+    {
         $this->_coreRegistry = $registry;
         parent::__construct($context, $data);
     }
@@ -74,8 +75,8 @@ class Edit extends Container
      */
     public function getHeaderText()
     {
-        if ($this->_coreRegistry->registry('jobs_testimonial')->getId()) {
-            return __("Edit Testimonial '%1'", $this->escapeHtml($this->_coreRegistry->registry('jobs_testimonial')->getName()));
+        if ($this->_coreRegistry->registry('testimonial_testimonial')->getId()) {
+            return __("Edit Testimonial '%1'", $this->escapeHtml($this->_coreRegistry->registry('testimonial_testimonial')->getName()));
         } else {
             return __('New Testimonial');
         }
@@ -100,6 +101,6 @@ class Edit extends Container
      */
     protected function _getSaveAndContinueUrl()
     {
-        return $this->getUrl('jobs/*/save', ['_current' => true, 'back' => 'edit', 'active_tab' => '']);
+        return $this->getUrl('testimonial/*/save', ['_current' => true, 'back' => 'edit', 'active_tab' => '']);
     }
 }
