@@ -6,7 +6,8 @@
   -->
 
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:noNamespaceSchemaLocation="urn:magento:framework:Module/etc/module.xsd">
-    <module name="Tigren_CustomerGroupCatalog" setup_version="1.0.0.2">
-    </module>
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="tigren_groupcat_display_text">
+        <observer name="mp_display_text" instance="Tigren\CustomerGroupCatalog\Observer\ChangeDisplayText"/>
+    </event>
 </config>
