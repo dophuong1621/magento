@@ -8,7 +8,7 @@
 namespace Tigren\Testimonial\Model\Config;
 
 use Magento\Ui\DataProvider\AbstractDataProvider;
-use Tigren\HelloWorld\Model\ResourceModel\Post\CollectionFactory;
+use Tigren\Testimonial\Model\ResourceModel\Testimonial\CollectionFactory;
 
 /**
  * Class DataProvider

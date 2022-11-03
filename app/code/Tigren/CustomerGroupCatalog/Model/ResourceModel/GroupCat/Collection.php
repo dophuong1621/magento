@@ -22,6 +22,10 @@ class Collection extends AbstractCollection
      */
     protected $_idFieldName = GroupCat::GROUPCAT_ID;
 
+    public function addAttributeToFilter(bool|int $strDateCurrent, array $array)
+    {
+    }
+
     /**
      * Define resource model
      *

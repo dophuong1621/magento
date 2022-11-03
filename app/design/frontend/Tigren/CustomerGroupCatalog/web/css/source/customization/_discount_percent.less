@@ -1,0 +1,38 @@
+/*
+ * @author    Tigren Solutions <info@tigren.com>
+ * @copyright Copyright (c) 2022 Tigren Solutions <https://www.tigren.com>. All rights reserved.
+ * @license   Open Software License ("OSL") v. 3.0
+ */
+
+//
+// Common
+// _____________________________
+
+& when (@media-common = true) {
+    .product-item-info {
+        position: relative;
+
+        .discount-percent {
+            position: absolute;
+            top: 9px;
+            z-index: 100;
+            background: #ff5501;
+            color: #fff;
+            padding: 7px;
+            border-radius: 15px 0px;
+            right: 9px;
+        }
+
+        .product-item-details {
+            .price-label {
+                display: none;
+            }
+
+            .old-price {
+                .price {
+                    text-decoration: line-through;
+                }
+            }
+        }
+    }
+}

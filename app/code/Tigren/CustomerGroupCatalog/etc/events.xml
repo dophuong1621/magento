@@ -7,7 +7,7 @@
 
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
-    <event name="tigren_groupcat_display_text">
-        <observer name="mp_display_text" instance="Tigren\CustomerGroupCatalog\Observer\ChangeDisplayText"/>
+    <event name="checkout_cart_product_add_after">
+        <observer name="get_quote" instance="Tigren\CustomerGroupCatalog\Observer\GetQuote"/>
     </event>
 </config>

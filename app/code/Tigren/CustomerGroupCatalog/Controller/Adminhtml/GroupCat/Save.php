@@ -51,6 +51,7 @@ class Save extends Action
     public function execute()
     {
         $data = $this->getRequest()->getPostValue();
+        +
 //        echo "<pre>";
 //        print_r($data);
 //        die();
@@ -78,36 +79,6 @@ class Save extends Action
         try {
             $groupCatFactory->addData($groupCatData);
             $groupCatFactory->save();
-//            $idNew = $groupCatFactory->getData('rule_id');
-//            $connect = $this->connection->getConnection();
-
-//            //  Customer Group
-//            $tableCustomerGroup = $connect->getTableName('tigren_groupcat_customer_group');
-//            foreach ($data['customer_group'] as $customerGroup) {
-//                $connect->insert($tableCustomerGroup, [
-//                    'customer_rule_id' => $idNew,
-//                    'customer_group_id' => $customerGroup
-//                ]);
-//            }
-//
-//            // Store
-//            $tableStore = $connect->getTableName('tigren_groupcat_store');
-//            foreach ($data['store'] as $store) {
-//                $connect->insert($tableStore, [
-//                    'customer_rule_id' => $idNew,
-//                    'store_id' => $store
-//                ]);
-//            }
-//
-//            // Products
-//            $tableProduct = $connect->getTableName('tigren_groupcat_product');
-////            foreach ($data['products'] as $products) {
-//            $connect->insert($tableProduct, [
-//                'customer_rule_id' => $idNew,
-//                'product_sku' => $data['product_sku'],
-//            ]);
-//            }
-
             $this->messageManager->addSuccessMessage(__('You saved the post.'));
         } catch (Exception $e) {
             $this->messageManager->addErrorMessage(__($e->getMessage()));

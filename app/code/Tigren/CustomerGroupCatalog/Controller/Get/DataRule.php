@@ -4,10 +4,8 @@ namespace Tigren\CustomerGroupCatalog\Controller\Get;
 
 use Magento\Framework\App\Action\Action;
 use Magento\Framework\App\Action\Context;
-use Magento\Framework\App\ResponseInterface;
-use Magento\Framework\Controller\ResultInterface;
 use Magento\Framework\View\Result\PageFactory;
-use Tigren\CustomerGroupCatalog\Model\ResourceModel\GroupCat;
+use Tigren\CustomerGroupCatalog\Model\ResourceModel\GroupCat\CollectionFactory;
 
 /**
  * Class DataRule
@@ -18,22 +16,30 @@ class DataRule extends Action
     /**
      * @var PageFactory
      */
-    protected PageFactory $PageFactory;
+    protected $PageFactory;
     /**
-     * @var GroupCat
+     * @var CollectionFactory
      */
-    protected GroupCat $groupCat;
+    protected $collectionFactory;
+    /**
+     * @var
+     */
+    private $dateTimeFactory;
 
     /**
      * @param Context $context
      * @param PageFactory $pageFactory
-     * @param GroupCat $groupCat
+     * @param CollectionFactory $collectionFactory
      */
-    public function __construct(Context $context, PageFactory $pageFactory, GroupCat $groupCat)
+    public function __construct(
+        Context           $context,
+        PageFactory       $pageFactory,
+        CollectionFactory $collectionFactory
+    )
     {
         parent::__construct($context);
         $this->PageFactory = $pageFactory;
-        $this->groupCat = $groupCat;
+        $this->collectionFactory = $collectionFactory;
     }
 
     /**
@@ -42,12 +48,24 @@ class DataRule extends Action
     public function execute()
     {
         echo "Lấy dữ liệu từ bảng tigren_customer_group_catalog";
-        $this->groupCat->create();
-        $collection = $this->groupCat->create()
-            ->addFieldToSelect(['rule_id', 'name', 'discount_amount', 'start_time', 'time_end', 'customer_group_ids', 'store_ids', 'product_ids', 'priority', 'active', 'created_at'])
+        $this->collectionFactory->create();
+        $collection = $this->collectionFactory->create()
+            ->addFieldToSelect(['*'])
             ->addFieldToFilter('active', 1);
+
         echo '<pre>';
         print_r($collection->getData());
         echo '<pre>';
+//        var_dump($collection->getSelect()->__toString());
+//        die;
+    }
+
+    /**
+     * @param int $id
+     * @return void
+     */
+    public function getRule(int $id)
+    {
+        var_dump($id);
     }
 }
