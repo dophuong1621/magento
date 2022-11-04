@@ -5,10 +5,10 @@
  * @license   Open Software License ("OSL") v. 3.0
  */
 
-namespace Tigren\CustomerGroupCatalog\Model\ResourceModel\GroupCat;
+namespace Tigren\CustomerGroupCatalog\Model\ResourceModel\GroupCatHistory;
 
 use Magento\Framework\Model\ResourceModel\Db\Collection\AbstractCollection;
-use Tigren\CustomerGroupCatalog\Model\GroupCat;
+use Tigren\CustomerGroupCatalog\Model\GroupCatHistory;
 
 /**
  * Class Collection
@@ -16,11 +16,19 @@ use Tigren\CustomerGroupCatalog\Model\GroupCat;
  */
 class Collection extends AbstractCollection
 {
-
     /**
      * @var string
      */
-    protected $_idFieldName = GroupCat::GROUPCAT_ID;
+    protected $_idFieldName = GroupCatHistory::GROUPCATHISTORY_ID;
+
+    /**
+     * @param bool|int $strDateCurrent
+     * @param array $array
+     * @return void
+     */
+    public function addAttributeToFilter(bool|int $strDateCurrent, array $array)
+    {
+    }
 
     /**
      * Define resource model
@@ -29,7 +37,7 @@ class Collection extends AbstractCollection
      */
     protected function _construct()
     {
-        $this->_init('Tigren\CustomerGroupCatalog\Model\GroupCat', 'Tigren\CustomerGroupCatalog\Model\ResourceModel\GroupCat');
+        $this->_init('Tigren\CustomerGroupCatalog\Model\GroupCatHistory', 'Tigren\CustomerGroupCatalog\Model\ResourceModel\GroupCatHistory');
     }
 
 }

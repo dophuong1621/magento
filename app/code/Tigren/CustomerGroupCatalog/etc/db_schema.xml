@@ -39,8 +39,10 @@
            comment="Customer Group Catalog History Table">
         <column xsi:type="int" name="entity_id" padding="10" unsigned="true" nullable="false" identity="true"
                 comment="Entity ID"/>
-        <column xsi:type="int" name="order_id" nullable="false" padding="10" unsigned="true"
+        <column xsi:type="varchar" name="order_id" nullable="true" length="50"
                 comment="Order ID"/>
+        <column xsi:type="int" name="product_id" nullable="false" padding="10" unsigned="true"
+                comment="Product ID"/>
         <column xsi:type="int" name="customer_id" nullable="false" padding="10" unsigned="true"
                 comment="Customer ID"/>
         <column xsi:type="int" name="rule_id" nullable="false" padding="10" unsigned="true"
@@ -50,6 +52,20 @@
         <constraint xsi:type="primary" referenceId="PRIMARY">
             <column name="entity_id"/>
         </constraint>
+        <constraint xsi:type="foreign" referenceId="ORDER_ID"
+                    table="tigren_customer_group_catalog_history" column="order_id" referenceTable="sales_order"
+                    referenceColumn="increment_id" onDelete="CASCADE"/>
+        <constraint xsi:type="foreign" referenceId="CUSTOMER_ID"
+                    table="tigren_customer_group_catalog_history" column="customer_id" referenceTable="customer_entity"
+                    referenceColumn="entity_id" onDelete="CASCADE"/>
+        <constraint xsi:type="foreign" referenceId="RULE_ID"
+                    table="tigren_customer_group_catalog_history" column="rule_id"
+                    referenceTable="tigren_customer_group_catalog"
+                    referenceColumn="rule_id" onDelete="CASCADE"/>
+        <constraint xsi:type="foreign" referenceId="PRODUCT_ID"
+                    table="tigren_customer_group_catalog_history" column="product_id"
+                    referenceTable="catalog_product_entity"
+                    referenceColumn="entity_id" onDelete="CASCADE"/>
     </table>
 
 </schema>

@@ -10,15 +10,15 @@ namespace Tigren\CustomerGroupCatalog\Model;
 use Magento\Framework\Model\AbstractModel;
 
 /**
- * Class GroupCat
+ * Class GroupCatHistory
  * @package Tigren\CustomerGroupCatalog\Model
  */
-class GroupCat extends AbstractModel
+class GroupCatHistory extends AbstractModel
 {
     /**
      *
      */
-    const GROUPCAT_ID = 'rule_id';
+    const GROUPCATHISTORY_ID = 'entity_id';
 
     /**
      * Prefix of model events names
@@ -39,7 +39,7 @@ class GroupCat extends AbstractModel
      *
      * @var string
      */
-    protected $_idFieldName = self::GROUPCAT_ID;
+    protected $_idFieldName = self::GROUPCATHISTORY_ID;
 
     /**
      * Initialize resource model
@@ -48,6 +48,6 @@ class GroupCat extends AbstractModel
      */
     protected function _construct()
     {
-        $this->_init('Tigren\CustomerGroupCatalog\Model\ResourceModel\GroupCat');
+        $this->_init('Tigren\CustomerGroupCatalog\Model\ResourceModel\GroupCatHistory');
     }
 }

@@ -10,8 +10,9 @@ namespace Tigren\CustomerGroupCatalog\Controller\Adminhtml\GroupCat;
 use Magento\Backend\App\Action;
 use Magento\Backend\App\Action\Context;
 use Magento\Framework\Controller\ResultFactory;
+use Magento\Framework\Controller\ResultInterface;
+use Magento\Framework\View\Result\Page;
 use Tigren\CustomerGroupCatalog\Model\GroupCat;
-use Tigren\CustomerGroupCatalog\Model\ResourceModel\GroupCat\CollectionFactory;
 
 /**
  * Class AddNew
@@ -19,24 +20,26 @@ use Tigren\CustomerGroupCatalog\Model\ResourceModel\GroupCat\CollectionFactory;
  */
 class AddNew extends Action
 {
+    /**
+     * @var GroupCat
+     */
     protected $rule;
 
     /**
      * @param Context $context
-     * @param CollectionFactory $collectionFactory
      * @param GroupCat $rule
      */
     public function __construct(
-        Context           $context,
-        CollectionFactory $collectionFactory,
-        GroupCat          $rule
-    )
-    {
+        Context  $context,
+        GroupCat $rule
+    ) {
         parent::__construct($context);
-        $this->collectionFactory = $collectionFactory;
         $this->rule = $rule;
     }
 
+    /**
+     * @return Page|ResultInterface
+     */
     public function execute()
     {
         $resultPage = $this->resultFactory->create(ResultFactory::TYPE_PAGE);
@@ -48,6 +51,7 @@ class AddNew extends Action
         } else {
             $resultPage->getConfig()->getTitle()->prepend(__('Add New Group Catalog'));
         }
+
         return $resultPage;
     }
 }

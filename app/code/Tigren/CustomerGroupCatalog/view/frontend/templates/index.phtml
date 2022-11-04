@@ -11,7 +11,38 @@
 
 use Tigren\CustomerGroupCatalog\Block\CustomerGroup\Index;
 
-echo $block->sayHello();
-
+$productCollection = $block->getProductCollection();
 
 ?>
+<div class="table-wrapper orders-history">
+    <h1>Rule Record</h1>
+    <table class="data table table-order-items history" id="my-orders-table">
+        <caption class="table-caption"><?php echo __('Rule Record') ?></caption>
+        <thead>
+        <tr>
+            <th scope="col" class="col id"><?php echo __('ID #') ?></th>
+            <th scope="col" class="col product"><?php echo __('Product Id') ?></th>
+            <th scope="col" class="col product"><?php echo __('Product Sku') ?></th>
+            <th scope="col" class="col customer"><?php echo __('Bill To Name') ?></th>
+            <th scope="col" class="col rule"><?php echo __('Rule ') ?></th>
+            <th scope="col" class="col rule"><?php echo __('Price Total ') ?></th>
+            <th scope="col" class="col rule"><?php echo __('Created At ') ?></th>
+            <th scope="col" class="col ">&nbsp;</th>
+        </tr>
+        </thead>
+        <tbody>
+        <?php
+        foreach ($productCollection as $rule): ?>
+            <tr>
+                <td class="col shipping"><?php echo $rule->getOrderId() ?></td>
+                <td class="col shipping"><?php echo $rule->getProductId() ?></td>
+                <td class="col shipping"><?php echo $rule->getSku() ?></td>
+                <td class="col shipping"><?php echo $rule->getCustomerFirstname() . ' ' . $rule->getCustomerLastname() ?></td>
+                <td class="col shipping"><?php echo $rule->getRuleId() ?></td>
+                <td class="col shipping"><?php echo '$' . number_format($rule->getTotalDue(), 2) ?></td>
+                <td class="col date"><?php echo $rule->getCreatedAt() ?></td>
+            </tr>
+        <?php endforeach; ?>
+        </tbody>
+    </table>
+</div>

@@ -11,12 +11,13 @@ use Magento\Framework\Pricing\PriceCurrencyInterface;
 use Magento\Quote\Api\Data\ShippingAssignmentInterface;
 use Magento\Quote\Model\Quote;
 use Magento\Quote\Model\Quote\Address\Total;
+use Magento\Quote\Model\Quote\Address\Total\AbstractTotal;
 
 /**
  * Class Custom
  * @package Tigren\CustomerGroupCatalog\Model\Total\Quote
  */
-class Custom extends \Magento\Quote\Model\Quote\Address\Total\AbstractTotal
+class Custom extends AbstractTotal
 {
     /**
      * @var PriceCurrencyInterface
@@ -29,8 +30,7 @@ class Custom extends \Magento\Quote\Model\Quote\Address\Total\AbstractTotal
      */
     public function __construct(
         PriceCurrencyInterface $priceCurrency
-    )
-    {
+    ) {
         $this->_priceCurrency = $priceCurrency;
     }
 
@@ -44,8 +44,7 @@ class Custom extends \Magento\Quote\Model\Quote\Address\Total\AbstractTotal
         Quote                       $quote,
         ShippingAssignmentInterface $shippingAssignment,
         Total                       $total
-    )
-    {
+    ) {
         parent::collect($quote, $shippingAssignment, $total);
         $baseDiscount = 10;
         $discount = $this->_priceCurrency->convert($baseDiscount);

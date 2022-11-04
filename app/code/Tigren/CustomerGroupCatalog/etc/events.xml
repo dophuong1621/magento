@@ -10,4 +10,12 @@
     <event name="checkout_cart_product_add_after">
         <observer name="get_quote" instance="Tigren\CustomerGroupCatalog\Observer\GetQuote"/>
     </event>
+    <event name="checkout_submit_all_after">
+        <observer name="place_order_after_groupcat"
+                  instance="Tigren\CustomerGroupCatalog\Observer\OrderGroupCat"/>
+    </event>
+    <!--    <event name="sales_quote_remove_item">-->
+    <!--        <observer name="sales_quote_remove_item_groupcat"-->
+    <!--                  instance="Tigren\CustomerGroupCatalog\Observer\QuoteRemoveItem"/>-->
+    <!--    </event>-->
 </config>

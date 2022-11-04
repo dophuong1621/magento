@@ -56,8 +56,6 @@ class DataRule extends Action
         echo '<pre>';
         print_r($collection->getData());
         echo '<pre>';
-//        var_dump($collection->getSelect()->__toString());
-//        die;
     }
 
     /**

@@ -8,10 +8,13 @@
 namespace Tigren\CustomerGroupCatalog\Controller\CustomerGroup;
 
 use Magento\Framework\App\Action\Context;
+use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Framework\App\ResponseInterface;
+use Magento\Framework\Controller\Result\Redirect;
 use Magento\Framework\Controller\ResultInterface;
 use Magento\Framework\View\Result\Page;
 use Magento\Framework\View\Result\PageFactory;
+use Magento\Store\Model\ScopeInterface;
 
 /**
  * Class Index
@@ -25,24 +28,46 @@ class Index extends \Magento\Framework\App\Action\Action
     protected $_pageFactory;
 
     /**
+     * @var ScopeConfigInterface
+     */
+
+    protected $scopeConfig;
+
+    /**
      * @param Context $context
      * @param PageFactory $pageFactory
+     * @param ScopeConfigInterface $scopeConfig
+     * @param Redirect $resultRedirectFactory
      */
     public function __construct(
-        Context     $context,
-        PageFactory $pageFactory
-    )
-    {
+        Context              $context,
+        PageFactory          $pageFactory,
+        ScopeConfigInterface $scopeConfig,
+        Redirect             $resultRedirectFactory
+    ) {
         $this->_pageFactory = $pageFactory;
-
-        return parent::__construct($context);
+        $this->scopeConfig = $scopeConfig;
+        $this->resultRedirectFactory = $resultRedirectFactory;
+        parent::__construct($context);
     }
 
     /**
-     * @return Page|ResultInterface
+     * @return ResponseInterface|ResultInterface|Page
      */
     public function execute()
     {
-        return $this->_pageFactory->create();
+        $isEnableModule = $this->isEnableModule();
+        if ($isEnableModule) {
+            return $this->_pageFactory->create();
+        }
+        return $this->_redirect('/');
+    }
+
+    /**
+     * @return mixed
+     */
+    public function isEnableModule()
+    {
+        return $this->scopeConfig->getValue('rule/general/enable', ScopeInterface::SCOPE_STORE);
     }
 }

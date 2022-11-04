@@ -7,10 +7,11 @@
 
 namespace Tigren\CustomerGroupCatalog\Model\Config;
 
+use Magento\Ui\DataProvider\AbstractDataProvider;
 use Tigren\CustomerGroupCatalog\Model\ResourceModel\GroupCat\Collection;
 use Tigren\CustomerGroupCatalog\Model\ResourceModel\GroupCat\CollectionFactory;
 
-class DataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
+class DataProvider extends AbstractDataProvider
 {
     /**
      * @var Collection
@@ -22,6 +23,14 @@ class DataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
      */
     protected $loadedData;
 
+    /**
+     * @param $name
+     * @param $primaryFieldName
+     * @param $requestFieldName
+     * @param CollectionFactory $collectionFactory
+     * @param array $meta
+     * @param array $data
+     */
     public function __construct(
         $name,
         $primaryFieldName,

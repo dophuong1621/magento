@@ -33,6 +33,7 @@ class Save extends Action
      * Save constructor.
      * @param Context $context
      * @param GroupCat $groupCatFactory
+     * @param ResourceConnection $connection
      */
     public function __construct(
         Context            $context,
@@ -51,14 +52,6 @@ class Save extends Action
     public function execute()
     {
         $data = $this->getRequest()->getPostValue();
-        +
-//        echo "<pre>";
-//        print_r($data);
-//        die();
-//        $dataStore = implode(',', $data['store']);
-//        echo "<pre>";
-//        print_r($dataStore);
-//        exit;
         $id = !empty($data['rule_id']) ? $data['rule_id'] : null;
 
         $groupCatData = [

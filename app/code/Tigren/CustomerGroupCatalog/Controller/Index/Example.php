@@ -8,8 +8,6 @@
 namespace Tigren\CustomerGroupCatalog\Controller\Index;
 
 use Magento\Framework\App\Action\Action;
-use Magento\Framework\App\ResponseInterface;
-use Magento\Framework\Controller\ResultInterface;
 
 /**
  * Class Example

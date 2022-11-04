@@ -12,7 +12,7 @@ use Magento\Framework\Model\ResourceModel\Db\AbstractDb;
 /**
  * GroupCat post mysql resource
  */
-class GroupCat extends AbstractDb
+class GroupCatHistory extends AbstractDb
 {
     /**
      * Initialize resource model
@@ -20,6 +20,6 @@ class GroupCat extends AbstractDb
      */
     protected function _construct()
     {
-        $this->_init('tigren_customer_group_catalog', 'rule_id');
+        $this->_init('tigren_customer_group_catalog_history', 'entity_id');
     }
 }

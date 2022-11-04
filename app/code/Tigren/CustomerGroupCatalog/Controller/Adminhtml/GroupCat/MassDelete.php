@@ -16,6 +16,10 @@ use Magento\Framework\Exception\LocalizedException;
 use Magento\Ui\Component\MassAction\Filter;
 use Tigren\CustomerGroupCatalog\Model\ResourceModel\GroupCat\CollectionFactory;
 
+/**
+ * Class MassDelete
+ * @package Tigren\CustomerGroupCatalog\Controller\Adminhtml\GroupCat
+ */
 class MassDelete extends Action
 {
     /**

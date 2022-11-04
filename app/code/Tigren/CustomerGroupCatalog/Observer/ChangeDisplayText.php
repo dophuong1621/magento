@@ -7,9 +7,20 @@
 
 namespace Tigren\CustomerGroupCatalog\Observer;
 
-class ChangeDisplayText implements \Magento\Framework\Event\ObserverInterface
+use Magento\Framework\Event\Observer;
+use Magento\Framework\Event\ObserverInterface;
+
+/**
+ * Class ChangeDisplayText
+ * @package Tigren\CustomerGroupCatalog\Observer
+ */
+class ChangeDisplayText implements ObserverInterface
 {
-    public function execute(\Magento\Framework\Event\Observer $observer)
+    /**
+     * @param Observer $observer
+     * @return $this
+     */
+    public function execute(Observer $observer)
     {
         $displayText = $observer->getData('mp_text');
         echo $displayText->getText() . " - FC </br>";

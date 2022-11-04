@@ -35,8 +35,7 @@ class GroupCatActions extends Column
         UrlInterface       $urlBuilder,
         array              $components = [],
         array              $data = []
-    )
-    {
+    ) {
         $this->urlBuilder = $urlBuilder;
         parent::__construct($context, $uiComponentFactory, $components, $data);
     }
