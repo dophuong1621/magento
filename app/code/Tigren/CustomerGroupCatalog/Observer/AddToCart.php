@@ -23,7 +23,7 @@ use Zend_Log_Writer_Stream;
  * Class GetQuote
  * @package Tigren\CustomerGroupCatalog\Observer
  */
-class GetQuote implements ObserverInterface
+class AddToCart implements ObserverInterface
 {
     /**
      * @var Session
@@ -50,7 +50,8 @@ class GetQuote implements ObserverInterface
         Session           $checkoutSession,
         CollectionFactory $collectionFactory,
         DateTimeFactory   $dateTimeFactory,
-    ) {
+    )
+    {
         $this->_checkoutSession = $checkoutSession;
         $this->collectionFactory = $collectionFactory;
         $this->dateTimeFactory = $dateTimeFactory;
@@ -74,7 +75,6 @@ class GetQuote implements ObserverInterface
             $sku = $product->getSku();
             $priceProduct = $product->getPrice();
 
-            // date
             $date = $this->dateTimeFactory->create();
             $formatDate = $date->gmtDate('Y-m-d H:i:s');
             $dateCurrent = date("Y-m-d H:i:s", strtotime($formatDate) + (60 * 420));
@@ -92,8 +92,8 @@ class GetQuote implements ObserverInterface
             if ($rule->getId() > 0) {
                 $this->_checkoutSession->setRuleId($rule->getId());
                 $this->_checkoutSession->setProductId($product->getId());
-                $discount = $rule->getDiscountAmount(); // price discount
-                $price = $priceProduct - ($priceProduct * $discount / 100); //set price
+                $discount = $rule->getDiscountAmount();
+                $price = $priceProduct - ($priceProduct * $discount / 100);
                 $quoteItem->setCustomPrice($price);
                 $quoteItem->setOriginalCustomPrice($price);
                 $quoteItem->getProduct()->setIsSuperMode(true);

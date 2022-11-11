@@ -46,3 +46,44 @@ $productCollection = $block->getProductCollection();
         </tbody>
     </table>
 </div>
+<button id="modal-btn">Test JS</button>
+<div id="modal-content">
+    <div class="modal-inner-content">
+        <h2>Tigren</h2>
+        <p>Hello</p>
+    </div>
+</div>
+
+
+<!--<script>-->
+<!--    require([" Tigren_CustomerGroupCatalog/js/customrequire"], function (custom) {-->
+<!--        alert(custom.getText());-->
+<!--    });-->
+<!--</script>-->
+<script type="text/javascript">
+    require(["jquery", "Magento_Ui/js/modal/modal"], function ($, modal) {
+        var options = {
+            type: 'popup',
+            responsive: true,
+            title: 'Bạn đang muốn test JS đúng không ?',
+            buttons: [{
+                text: 'Accept',
+                class: 'modal-accept',
+                click: function () {
+                    alert('Success');
+                    this.closeModal();
+                }
+            }, {
+                text: 'Cancel',
+                class: 'modal-close',
+                click: function () {
+                    this.closeModal();
+                }
+            }],
+        };
+        var popup = modal(options, $('#modal-content'));
+        $("#modal-btn").click(function () {
+            $('#modal-content').modal('openModal');
+        });
+    });
+</script>

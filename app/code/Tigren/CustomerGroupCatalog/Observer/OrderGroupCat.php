@@ -67,7 +67,6 @@ class OrderGroupCat implements ObserverInterface
      * @return void
      * @throws Zend_Log_Exception
      */
-
     public function execute(Observer $observer)
     {
         $writer = new Zend_Log_Writer_Stream(BP . '/var/log/custom.log');
@@ -75,10 +74,10 @@ class OrderGroupCat implements ObserverInterface
         $logger->addWriter($writer);
         try {
             $order = $observer->getEvent()->getData('order');
-            $customerId = $order->getCustomerId(); // customer id
+            $customerId = $order->getCustomerId();
 
-            $ruleId = $this->checkoutSession->getRuleId(); // rule id
-            $productId = $this->checkoutSession->getProductId(); // rule id
+            $ruleId = $this->checkoutSession->getRuleId();
+            $productId = $this->checkoutSession->getProductId();
 
             if ($ruleId) {
                 $oderDataHistory = [
