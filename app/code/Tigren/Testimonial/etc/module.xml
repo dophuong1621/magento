@@ -9,4 +9,5 @@
         xsi:noNamespaceSchemaLocation="urn:magento:framework:Module/etc/module.xsd">
     <module name="Tigren_Testimonial" setup_version="1.0.0.2">
     </module>
+    <module name="Testimonial_RestApi" setup_version="1.0.0"/>
 </config>

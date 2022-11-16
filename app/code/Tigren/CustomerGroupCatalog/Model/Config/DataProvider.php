@@ -11,6 +11,10 @@ use Magento\Ui\DataProvider\AbstractDataProvider;
 use Tigren\CustomerGroupCatalog\Model\ResourceModel\GroupCat\Collection;
 use Tigren\CustomerGroupCatalog\Model\ResourceModel\GroupCat\CollectionFactory;
 
+/**
+ * Class DataProvider
+ * @package Tigren\CustomerGroupCatalog\Model\Config
+ */
 class DataProvider extends AbstractDataProvider
 {
     /**
@@ -38,7 +42,8 @@ class DataProvider extends AbstractDataProvider
         CollectionFactory $collectionFactory,
         array $meta = [],
         array $data = []
-    ) {
+    )
+    {
         $this->collection = $collectionFactory->create();
         parent::__construct($name, $primaryFieldName, $requestFieldName, $meta, $data);
     }

@@ -10,8 +10,9 @@ define([
     'underscore',
     'Magento_Catalog/js/product/view/product-ids-resolver',
     'Magento_Catalog/js/product/view/product-info-resolver',
+    'mage/url',
     'jquery-ui-modules/widget'
-], function ($, $t, _, idsResolver, productInfoResolver) {
+], function ($, $t, _, idsResolver, productInfoResolver, urlBuilder) {
     'use strict';
     return function (widget) {
         $.widget('mage.catalogAddToCart', widget, {
@@ -48,7 +49,7 @@ define([
                     /** @inheritdoc */
                     beforeSend: function () {
                         $.ajax({
-                            url: 'checkout/checkout/advancedcheckout',
+                            url: urlBuilder.build('checkout/checkout/advancedcheckout'),
                             data: formData,
                             type: 'post',
                             dataType: 'json',
@@ -57,10 +58,11 @@ define([
                             processData: false,
                             success: function (response) {
                                 let result;
-                                let productSku;
                                 result = response.result;
-                                productSku = response.data.product_in_cart;
                                 if (result === true) {
+                                    let productSku;
+                                    productSku = response.data.product_in_cart;
+
                                     var popup = $('<div class="add-to-cart-modal-popup"/>').html(productSku + '<span> has been added to cart.</span>').modal({
                                         modalClass: 'add-to-cart-popup',
                                         title: $.mage.__("ADD PRODUCT TO CART"),
@@ -69,7 +71,7 @@ define([
                                                 text: 'Clear Cart',
                                                 click: function () {
                                                     $.ajax({
-                                                        url: 'checkout/checkout/clearcart',
+                                                        url: urlBuilder.build('checkout/checkout/clearcart'),
                                                         type: 'post',
                                                         dataType: 'json',
                                                         cache: false,
@@ -79,12 +81,15 @@ define([
                                                             let result;
                                                             result = response.result;
                                                             if (result === true) {
+                                                                $('#loader').hide();
+                                                                location.reload();
                                                                 popup.modal('closeModal');
+
                                                             }
                                                         },
                                                         error: function (xhr, status, errorThrown) {
                                                             console.log('Error happens. Try again.');
-                                                        }
+                                                        },
                                                     })
                                                 }
                                             },

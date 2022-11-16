@@ -7,6 +7,9 @@
 
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <!--    API-->
+    <preference for="Tigren\Testimonial\Api\CustomInterface" type="Tigren\Testimonial\Model\Api\Custom"/>
+
     <!-- Create our type TestimonialGridDataProvider -->
     <virtualType name="TestimonialGridDataProvider"
                  type="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">

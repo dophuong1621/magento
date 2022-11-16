@@ -12,3 +12,8 @@ ComponentRegistrar::register(
     'Tigren_Testimonial',
     __DIR__
 );
+ComponentRegistrar::register(
+    \Magento\Framework\Component\ComponentRegistrar::MODULE,
+    'Testimonial_RestApi',
+    __DIR__
+);

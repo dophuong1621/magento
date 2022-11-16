@@ -10,7 +10,7 @@ namespace Tigren\Testimonial\Block\Storefront;
 use Magento\Framework\App\ResourceConnection;
 use Magento\Framework\View\Element\Template;
 use Magento\Framework\View\Element\Template\Context;
-use Tigren\Testimonial\Model\ResourceModel\Testimonial;
+use Tigren\Testimonial\Model\ResourceModel\Testimonial\CollectionFactory;
 
 /**
  * Class ListTestimonial
@@ -20,7 +20,7 @@ class ListTestimonial extends Template
 {
 
     /**
-     * @var Testimonial
+     * @var CollectionFactory
      */
     protected $_testimonial;
 
@@ -36,16 +36,17 @@ class ListTestimonial extends Template
 
     /**
      * @param Context $context
-     * @param Testimonial $testimonial
+     * @param CollectionFactory $testimonial
      * @param ResourceConnection $resource
      * @param array $data
      */
     public function __construct(
         Context            $context,
-        Testimonial        $testimonial,
+        CollectionFactory  $testimonial,
         ResourceConnection $resource,
         array              $data = []
-    ) {
+    )
+    {
         $this->_testimonial = $testimonial;
         $this->_resource = $resource;
 
@@ -56,56 +57,13 @@ class ListTestimonial extends Template
     }
 
     /**
-     * @return $this
-     */
-    protected function _prepareLayout()
-    {
-        parent::_prepareLayout();
-
-        // You can put these informations editable on BO
-        $title = __('We are hiring');
-        $description = __('Look at the testimonial we have got for you');
-        $keywords = __('testimonial,hiring');
-
-        $this->getLayout()->createBlock('Magento\Catalog\Block\Breadcrumbs');
-
-        if ($breadcrumbsBlock = $this->getLayout()->getBlock('breadcrumbs')) {
-            $breadcrumbsBlock->addCrumb(
-                'testimonial',
-                [
-                    'label' => $title,
-                    'title' => $title,
-                    'link' => false // No link for the last element
-                ]
-            );
-        }
-
-        $this->pageConfig->getTitle()->set($title);
-        $this->pageConfig->setDescription($description);
-        $this->pageConfig->setKeywords($keywords);
-
-        $pageMainTitle = $this->getLayout()->getBlock('page.main.title');
-        if ($pageMainTitle) {
-            $pageMainTitle->setPageTitle($title);
-        }
-
-        return $this;
-    }
-
-    /**
      * @return null
      */
     protected function _getTestimonialCollection()
     {
         if ($this->_testimonialCollection === null) {
-            $testimonialCollection = $this->_testimonial->getCollection()
-                ->addFieldToSelect('*')
-                ->addFieldToFilter('status', $this->_testimonial->getEnableStatus());
-//                ->join(
-//                    array('department' => $this->_department->getResource()->getMainTable()),
-//                    'main_table.department_id = department.'.$this->_testimonial->getIdFieldName(),
-//                    array('department_name' => 'name')
-//                );
+            $testimonialCollection = $this->_testimonial->create()
+                ->addFieldToSelect('*');
 
             $this->_testimonialCollection = $testimonialCollection;
         }
@@ -130,6 +88,6 @@ class ListTestimonial extends Template
             return '#';
         }
 
-        return $this->getUrl('testimonial/testimonial/view', ['id' => $testimonial->getId()]);
+        return $this->getUrl('testimonial/storefront/index', ['id' => $testimonial->getId()]);
     }
 }

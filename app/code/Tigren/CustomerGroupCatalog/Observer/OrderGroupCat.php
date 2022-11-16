@@ -55,7 +55,8 @@ class OrderGroupCat implements ObserverInterface
         Session         $checkoutSession,
         GroupCatHistory $groupCatHistory,
         LoggerInterface $logger,
-    ) {
+    )
+    {
         $this->groupCatHistory = $groupCatHistory;
         $this->checkoutSession = $checkoutSession;
         $this->customerSession = $customerSession;
@@ -69,9 +70,6 @@ class OrderGroupCat implements ObserverInterface
      */
     public function execute(Observer $observer)
     {
-        $writer = new Zend_Log_Writer_Stream(BP . '/var/log/custom.log');
-        $logger = new Zend_Log();
-        $logger->addWriter($writer);
         try {
             $order = $observer->getEvent()->getData('order');
             $customerId = $order->getCustomerId();

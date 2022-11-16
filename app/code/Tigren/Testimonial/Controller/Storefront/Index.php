@@ -7,18 +7,24 @@
 
 namespace Tigren\Testimonial\Controller\Storefront;
 
-use Magento\Framework\App\Action\Action;
-use Magento\Framework\App\ResponseInterface;
-use Magento\Framework\Controller\ResultInterface;
+use Magento\Framework\App\Action;
 
 /**
  * Class Index
  * @package Tigren\Testimonial\Controller\Storefront
  */
-class Index extends Action
+class Index extends Action\Action
 {
     /**
-     * @return ResponseInterface|ResultInterface|void
+     * @param Action\Context $context
+     */
+    public function __construct(Action\Context $context)
+    {
+        parent::__construct($context);
+    }
+
+    /**
+     * @return void
      */
     public function execute()
     {

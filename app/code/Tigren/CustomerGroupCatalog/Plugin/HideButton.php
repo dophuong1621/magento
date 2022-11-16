@@ -7,10 +7,8 @@
 
 namespace Tigren\CustomerGroupCatalog\Plugin;
 
-
 use Magento\Catalog\Model\Product;
-use Magento\Customer\Model\Context;
-use Magento\Framework\App\ObjectManager;
+use Magento\Framework\App\Http\Context;
 
 /**
  * Class HideButton
@@ -18,25 +16,33 @@ use Magento\Framework\App\ObjectManager;
  */
 class HideButton
 {
+
+    /**
+     * @var Context
+     */
+    private $httpContext;
+
+    /**
+     * @param Context $httpContext
+     */
+    public function __construct(
+        Context $httpContext,
+    )
+    {
+        $this->httpContext = $httpContext;
+    }
+
     /**
      * @param Product $product
-     * @return string
+     * @return bool
      */
     public function afterIsSaleable(Product $product)
     {
-//        return [];
-        $objectManager = ObjectManager::getInstance();
-        $httpContext = $objectManager->get('Magento\Framework\App\Http\Context');
-        $isLoggedIn = $httpContext->getValue(Context::CONTEXT_AUTH);
+        $isLoggedIn = $this->httpContext->getValue(\Magento\Customer\Model\Context::CONTEXT_AUTH);
         if ($isLoggedIn) {
             return true;
         } else {
             return false;
-//            $wording = 'Please Login To See Price';
-//            return '<div class="" ' .
-//                'data-role="priceBox" ' .
-//                'data-product-id="' . $this->getSaleableItem()->getId() . '"' .
-//                '>' . $wording . '</div>';
         }
     }
 }

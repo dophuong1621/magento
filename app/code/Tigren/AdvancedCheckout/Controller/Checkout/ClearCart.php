@@ -8,14 +8,13 @@
 namespace Tigren\AdvancedCheckout\Controller\Checkout;
 
 use Magento\Checkout\Model\Cart;
+use Magento\Checkout\Model\Session;
 use Magento\Framework\App\Action\Action;
 use Magento\Framework\App\Action\Context;
-use Magento\Framework\App\ObjectManager;
+use Magento\Framework\App\ResponseInterface;
+use Magento\Framework\Controller\Result\Json;
 use Magento\Framework\Controller\Result\JsonFactory;
-use Tigren\AdvancedCheckout\Model\ResourceModel\Quote\CollectionFactory;
-use Zend_Log;
-use Zend_Log_Exception;
-use Zend_Log_Writer_Stream;
+use Magento\Framework\Controller\ResultInterface;
 
 /**
  * Class AdvancedCheckout
@@ -23,15 +22,11 @@ use Zend_Log_Writer_Stream;
  */
 class ClearCart extends Action
 {
-    /**
-     * @var CollectionFactory
-     */
-    private $collectionFactory;
 
     /**
-     * @var JsonFactory
+     * @var Session
      */
-    private $jsonFactory;
+    private $session;
 
     /**
      * @var Cart
@@ -39,56 +34,37 @@ class ClearCart extends Action
     private $cart;
 
     /**
+     * @var JsonFactory
+     */
+    protected $resultJsonFactory;
+
+    /**
      * @param Cart $cart
-     * @param JsonFactory $jsonFactory
      * @param Context $context
+     * @param JsonFactory $resultJsonFactory
+     * @param Session $session
      */
     public function __construct(
-        Cart              $cart,
-        JsonFactory       $jsonFactory,
-        Context           $context,
-        CollectionFactory $collectionFactory,
-    )
-    {
+        Cart        $cart,
+        Context     $context,
+        JsonFactory $resultJsonFactory,
+        Session     $session,
+    ) {
         parent::__construct($context);
-        $this->collectionFactory = $collectionFactory;
         $this->cart = $cart;
-        $this->jsonFactory = $jsonFactory;
+        $this->resultJsonFactory = $resultJsonFactory;
     }
 
     /**
-     * @return false|string
-     * @throws Zend_Log_Exception
+     * @return ResponseInterface|Json|ResultInterface
      */
     public function execute()
     {
-        $checkoutSession = $this->getCheckoutSession();
-        $allItems = $checkoutSession->getQuote()->getAllVisibleItems();
-
-
-        foreach ($allItems as $item) {
-            $cartItemId = $item->getItemId();
-            $itemObj = $this->getItemModel()->load($cartItemId);
-
-            $itemObj->delete();
-
-            echo json_encode([
-                'result' => true,
-            ]);
-        }
-    }
-
-    public function getCheckoutSession()
-    {
-        $objectManager = ObjectManager::getInstance();
-        $checkoutSession = $objectManager->get('Magento\Checkout\Model\Session');
-        return $checkoutSession;
-    }
-
-    public function getItemModel()
-    {
-        $objectManager = ObjectManager::getInstance();
-        $itemModel = $objectManager->create('Magento\Quote\Model\Quote\Item');
-        return $itemModel;
+        $this->cart->truncate()->save();
+        $response = [
+            'result' => true,
+        ];
+        $resultJson = $this->resultJsonFactory->create();
+        return $resultJson->setData($response);
     }
 }
