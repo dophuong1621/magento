@@ -10,6 +10,7 @@ namespace Tigren\Testimonial\Controller\Adminhtml\Testimonial;
 use Exception;
 use Magento\Backend\App\Action;
 use Magento\Backend\Model\View\Result\Redirect;
+use Magento\Framework\App\ResponseInterface;
 use Magento\Framework\Controller\ResultInterface;
 use Tigren\Testimonial\Model\Testimonial;
 
@@ -38,17 +39,16 @@ class Delete extends Action
     }
 
     /**
-     * {@inheritdoc}
+     * @return bool
      */
     protected function _isAllowed()
     {
         return $this->_authorization->isAllowed('Tigren_Testimonial::testimonial_delete');
     }
 
+
     /**
-     * Delete action
-     *
-     * @return ResultInterface
+     * @return Redirect|ResponseInterface|ResultInterface
      */
     public function execute()
     {

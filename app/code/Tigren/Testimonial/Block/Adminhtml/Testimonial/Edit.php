@@ -7,6 +7,7 @@
 
 namespace Tigren\Testimonial\Block\Adminhtml\Testimonial;
 
+use Magento\Backend\Block\Widget\Context;
 use Magento\Backend\Block\Widget\Form\Container;
 use Magento\Framework\Phrase;
 use Magento\Framework\Registry;
@@ -15,22 +16,20 @@ class Edit extends Container
 {
     /**
      * Core registry
-     *
      * @var Registry
      */
     protected $_coreRegistry = null;
 
     /**
-     * @param \Magento\Backend\Block\Widget\Context $context
+     * @param Context $context
      * @param Registry $registry
      * @param array $data
      */
     public function __construct(
-        \Magento\Backend\Block\Widget\Context $context,
-        Registry                              $registry,
-        array                                 $data = []
-    )
-    {
+        Context  $context,
+        Registry $registry,
+        array    $data = []
+    ) {
         $this->_coreRegistry = $registry;
         parent::__construct($context, $data);
     }

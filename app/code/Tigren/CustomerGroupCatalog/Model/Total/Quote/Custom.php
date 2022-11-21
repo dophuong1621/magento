@@ -14,7 +14,7 @@ use Magento\Quote\Model\Quote\Address\Total;
 use Magento\Quote\Model\Quote\Address\Total\AbstractTotal;
 
 /**
- * Class Custom
+ * Class Testimonial
  * @package Tigren\CustomerGroupCatalog\Model\Total\Quote
  */
 class Custom extends AbstractTotal
@@ -25,12 +25,13 @@ class Custom extends AbstractTotal
     protected $_priceCurrency;
 
     /**
-     * Custom constructor.
+     * Testimonial constructor.
      * @param PriceCurrencyInterface $priceCurrency
      */
     public function __construct(
         PriceCurrencyInterface $priceCurrency
-    ) {
+    )
+    {
         $this->_priceCurrency = $priceCurrency;
     }
 
@@ -44,7 +45,8 @@ class Custom extends AbstractTotal
         Quote                       $quote,
         ShippingAssignmentInterface $shippingAssignment,
         Total                       $total
-    ) {
+    )
+    {
         parent::collect($quote, $shippingAssignment, $total);
         $baseDiscount = 10;
         $discount = $this->_priceCurrency->convert($baseDiscount);

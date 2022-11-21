@@ -10,6 +10,7 @@ namespace Tigren\Testimonial\Controller\Adminhtml\Testimonial;
 use Exception;
 use Magento\Backend\App\Action;
 use Magento\Backend\Model\View\Result\Redirect;
+use Magento\Framework\App\ResponseInterface;
 use Magento\Framework\Controller\ResultInterface;
 use Magento\Framework\Exception\LocalizedException;
 use RuntimeException;
@@ -31,15 +32,16 @@ class Save extends Action
      * @param Testimonial $model
      */
     public function __construct(
-        Action\Context                        $context,
-        Testimonial $model
-    ) {
+        Action\Context $context,
+        Testimonial    $model
+    )
+    {
         parent::__construct($context);
         $this->_model = $model;
     }
 
     /**
-     * {@inheritdoc}
+     * @return bool
      */
     protected function _isAllowed()
     {
@@ -47,9 +49,7 @@ class Save extends Action
     }
 
     /**
-     * Save action
-     *
-     * @return ResultInterface
+     * @return Redirect
      */
     public function execute()
     {
@@ -57,7 +57,6 @@ class Save extends Action
         /** @var Redirect $resultRedirect */
         $resultRedirect = $this->resultRedirectFactory->create();
         if ($data) {
-            /** @var Testimonial $model */
             $model = $this->_model;
 
             $id = $this->getRequest()->getParam('id');
@@ -80,9 +79,7 @@ class Save extends Action
                     return $resultRedirect->setPath('*/*/edit', ['id' => $model->getId(), '_current' => true]);
                 }
                 return $resultRedirect->setPath('*/*/');
-            } catch (LocalizedException $e) {
-                $this->messageManager->addError($e->getMessage());
-            } catch (RuntimeException $e) {
+            } catch (LocalizedException|RuntimeException $e) {
                 $this->messageManager->addError($e->getMessage());
             } catch (Exception $e) {
                 $this->messageManager->addException($e, __('Something went wrong while saving the testimonial'));

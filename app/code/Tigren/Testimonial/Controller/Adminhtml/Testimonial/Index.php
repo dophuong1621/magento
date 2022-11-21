@@ -18,9 +18,6 @@ use Magento\Framework\View\Result\PageFactory;
  */
 class Index extends Action
 {
-    /**
-     *
-     */
     const ADMIN_RESOURCE = 'Tigren_Testimonial::testimonial';
 
     /**
@@ -35,15 +32,12 @@ class Index extends Action
     public function __construct(
         Context     $context,
         PageFactory $resultPageFactory
-    )
-    {
-        parent::__construct($context);
+    ) {
         $this->resultPageFactory = $resultPageFactory;
+        parent::__construct($context);
     }
 
     /**
-     * Index action
-     *
      * @return Page
      */
     public function execute()

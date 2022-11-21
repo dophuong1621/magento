@@ -47,7 +47,7 @@ require_once __DIR__ . '/autoload.php';
 // Sets default autoload mappings, may be overridden in Bootstrap::create
 Bootstrap::populateAutoloader(BP, []);
 
-/* Custom umask value may be provided in optional mage_umask file in root */
+/* Testimonial umask value may be provided in optional mage_umask file in root */
 $umaskFile = BP . '/magento_umask';
 $mask = file_exists($umaskFile) ? octdec(file_get_contents($umaskFile)) : 002;
 umask($mask);

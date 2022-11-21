@@ -5,7 +5,7 @@
  * @license   Open Software License ("OSL") v. 3.0
  */
 
-namespace Tigren\Testimonial\Block\Storefront;
+namespace Tigren\Testimonial\Block\Testimonial;
 
 use Magento\Framework\Registry;
 use Magento\Framework\View\Element\Template;
@@ -16,7 +16,7 @@ use Tigren\Testimonial\Model\TestimonialFactory;
 
 /**
  * Class Edit
- * @package Tigren\Testimonial\Block\Storefront
+ * @package Tigren\Testimonial\Block\Testimonial
  */
 class Edit extends Template
 {
@@ -53,8 +53,7 @@ class Edit extends Template
         Registry           $coreRegistry,
         TestimonialFactory $contactLoader,
         array              $data = []
-    )
-    {
+    ) {
         $this->_pageFactory = $pageFactory;
         $this->_coreRegistry = $coreRegistry;
         $this->_contactLoader = $contactLoader;

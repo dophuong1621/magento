@@ -7,7 +7,11 @@
 
 namespace Tigren\Testimonial\Block\Adminhtml\Testimonial\Edit;
 
+use Magento\Backend\Block\Template\Context;
 use Magento\Backend\Block\Widget\Form\Generic;
+use Magento\Framework\Data\FormFactory;
+use Magento\Framework\Exception\LocalizedException;
+use Magento\Framework\Registry;
 use Magento\Store\Model\System\Store;
 use Tigren\Testimonial\Model\Testimonial;
 
@@ -17,27 +21,25 @@ use Tigren\Testimonial\Model\Testimonial;
  */
 class Form extends Generic
 {
-
     /**
      * @var Store
      */
     protected $_systemStore;
 
     /**
-     * @param \Magento\Backend\Block\Template\Context $context
-     * @param \Magento\Framework\Registry $registry
-     * @param \Magento\Framework\Data\FormFactory $formFactory
+     * @param Context $context
+     * @param Registry $registry
+     * @param FormFactory $formFactory
      * @param Store $systemStore
      * @param array $data
      */
     public function __construct(
-        \Magento\Backend\Block\Template\Context $context,
-        \Magento\Framework\Registry             $registry,
-        \Magento\Framework\Data\FormFactory     $formFactory,
-        Store                                   $systemStore,
-        array                                   $data = []
-    )
-    {
+        Context     $context,
+        Registry    $registry,
+        FormFactory $formFactory,
+        Store       $systemStore,
+        array       $data = []
+    ) {
         $this->_systemStore = $systemStore;
         parent::__construct($context, $registry, $formFactory, $data);
     }
@@ -58,13 +60,13 @@ class Form extends Generic
      * Prepare form
      *
      * @return $this
+     * @throws LocalizedException
      */
     protected function _prepareForm()
     {
         /** @var Testimonial $model */
         $model = $this->_coreRegistry->registry('testimonial_testimonial');
 
-        /** @var \Magento\Framework\Data\Form $form */
         $form = $this->_formFactory->create(
             ['data' => ['id' => 'edit_form', 'action' => $this->getData('action'), 'method' => 'post']]
         );
@@ -91,36 +93,6 @@ class Form extends Generic
             'text',
             ['name' => 'email', 'label' => __('Testimonial Email'), 'title' => __('Testimonial Email'), 'required' => true]
         );
-//
-//        $fieldset->addField(
-//            'message',
-//            'text',
-//            ['name' => 'message', 'label' => __('Testimonial Message'), 'title' => __('Testimonial Message'), 'required' => true]
-//        );
-//
-//        $fieldset->addField(
-//            'company',
-//            'text',
-//            ['name' => 'company', 'label' => __('Testimonial Company'), 'title' => __('Testimonial Company'), 'required' => true]
-//        );
-//
-//        $fieldset->addField(
-//            'rating',
-//            'int',
-//            ['name' => 'rating', 'label' => __('Testimonial Rating'), 'title' => __('Testimonial Rating'), 'required' => true]
-//        );
-//
-//        $fieldset->addField(
-//            'profile_image',
-//            'varchar',
-//            ['name' => 'profile_image', 'label' => __('Testimonial Profile Image'), 'title' => __('Testimonial Profile Image'), 'required' => true]
-//        );
-//
-//        $fieldset->addField(
-//            'status',
-//            'int',
-//            ['name' => 'status', 'label' => __('Testimonial Status'), 'title' => __('Testimonial Status'), 'required' => true]
-//        );
 
         $form->setValues($model->getData());
         $form->setUseContainer(true);

@@ -11,7 +11,7 @@ use Magento\Framework\Model\ResourceModel\Db\AbstractDb;
 
 /**
  * Class Testimonial
- * @package Tigren\HelloWorld\ModelResource\Model
+ * @package Tigren\Testimonial\Model\ResourceModel
  */
 class Testimonial extends AbstractDb
 {

@@ -7,7 +7,6 @@
 
 namespace Tigren\Testimonial\Controller\Adminhtml\Testimonial;
 
-use Exception;
 use Magento\Backend\App\Action;
 use Magento\Backend\App\Action\Context;
 use Magento\Backend\Model\View\Result\Redirect;
@@ -32,7 +31,6 @@ class MassDelete extends Action
      */
     protected $collectionFactory;
 
-
     /**
      * @param Context $context
      * @param Filter $filter
@@ -46,10 +44,8 @@ class MassDelete extends Action
     }
 
     /**
-     * Execute action
-     *
      * @return Redirect
-     * @throws LocalizedException|Exception
+     * @throws LocalizedException
      */
     public function execute()
     {

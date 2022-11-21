@@ -14,6 +14,7 @@ use Magento\Ui\Component\Listing\Columns\Column;
 
 /**
  * Class TestimonialActions
+ * @package Tigren\Testimonial\Ui\Component\Listing\Column
  */
 class TestimonialActions extends Column
 {
@@ -41,8 +42,6 @@ class TestimonialActions extends Column
     }
 
     /**
-     * Prepare Data Source
-     *
      * @param array $dataSource
      * @return array
      */

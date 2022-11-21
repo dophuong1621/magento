@@ -5,7 +5,7 @@
  * @license   Open Software License ("OSL") v. 3.0
  */
 
-namespace Tigren\Testimonial\Block\Storefront;
+namespace Tigren\Testimonial\Block\Testimonial;
 
 use Magento\Framework\App\ResourceConnection;
 use Magento\Framework\View\Element\Template;
@@ -14,7 +14,7 @@ use Tigren\Testimonial\Model\ResourceModel\Testimonial\CollectionFactory;
 
 /**
  * Class ListTestimonial
- * @package Tigren\Testimonial\Block\Storefront
+ * @package Tigren\Testimonial\Block\Testimonial
  */
 class ListTestimonial extends Template
 {
@@ -88,6 +88,6 @@ class ListTestimonial extends Template
             return '#';
         }
 
-        return $this->getUrl('testimonial/storefront/index', ['id' => $testimonial->getId()]);
+        return $this->getUrl('testimonial/testimonial/index', ['id' => $testimonial->getId()]);
     }
 }

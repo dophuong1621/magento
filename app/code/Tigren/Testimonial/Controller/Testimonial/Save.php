@@ -5,7 +5,7 @@
  * @license   Open Software License ("OSL") v. 3.0
  */
 
-namespace Tigren\Testimonial\Controller\Storefront;
+namespace Tigren\Testimonial\Controller\Testimonial;
 
 use Exception;
 use Magento\Customer\Model\Session;
@@ -18,7 +18,7 @@ use Tigren\Testimonial\Model\TestimonialFactory;
 
 /**
  * Class Save
- * @package Tigren\Testimonial\Controller\Storefront
+ * @package Tigren\Testimonial\Controller\Testimonial
  */
 class Save extends Action
 {
@@ -33,11 +33,6 @@ class Save extends Action
     protected $_testimonialFactory;
 
     /**
-     * @var Session
-     */
-    private $_customerSession;
-
-    /**
      * @param Context $context
      * @param PageFactory $pageFactory
      * @param TestimonialFactory $testimonialFactory
@@ -46,12 +41,10 @@ class Save extends Action
         Context            $context,
         PageFactory        $pageFactory,
         TestimonialFactory $testimonialFactory,
-        Session            $customerSession,
     )
     {
         $this->_pageFactory = $pageFactory;
         $this->_testimonialFactory = $testimonialFactory;
-        $this->_customerSession = $customerSession;
         return parent::__construct($context);
     }
 
@@ -70,10 +63,11 @@ class Save extends Action
                 'rating' => $data['rating'],
                 'status' => $data['status']
             ];
+
             if (!empty($newData)) {
-//                $model = $this->_testimonialFactory->create();
-//                $model->addData($newData);
-//                $model->save();
+                $model = $this->_testimonialFactory->create();
+                $model->addData($newData);
+                $model->save();
                 $this->messageManager->addSuccessMessage(__("Data Created Successfully."));
             }
         } catch (Exception $e) {
@@ -81,6 +75,6 @@ class Save extends Action
         }
         $resultRedirect = $this->resultFactory->create(ResultFactory::TYPE_REDIRECT);
         $resultRedirect->setUrl($this->_redirect->getRefererUrl());
-        return $this->_redirect('testimonial/storefront/index');
+        return $this->_redirect('testimonial/testimonial/index');
     }
 }

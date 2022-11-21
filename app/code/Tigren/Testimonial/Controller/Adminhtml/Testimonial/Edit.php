@@ -4,18 +4,23 @@ namespace Tigren\Testimonial\Controller\Adminhtml\Testimonial;
 
 use Magento\Backend\App\Action;
 use Magento\Backend\Model\View\Result\Page;
+use Magento\Framework\App\ResponseInterface;
+use Magento\Framework\Controller\Result\Redirect;
 use Magento\Framework\Registry;
 use Magento\Framework\View\Result\PageFactory;
 use Tigren\Testimonial\Model\Testimonial;
 
+/**
+ * Class Edit
+ * @package Tigren\Testimonial\Controller\Adminhtml\Testimonial
+ */
 class Edit extends Action
 {
+
     /**
-     * Core registry
-     *
      * @var Registry
      */
-    protected $_coreRegistry = null;
+    protected $_coreRegistry;
 
     /**
      * @var PageFactory
@@ -34,11 +39,12 @@ class Edit extends Action
      * @param Testimonial $model
      */
     public function __construct(
-        Action\Context                             $context,
-        PageFactory $resultPageFactory,
-        Registry                $registry,
-        Testimonial      $model
-    ) {
+        Action\Context $context,
+        PageFactory    $resultPageFactory,
+        Registry       $registry,
+        Testimonial    $model
+    )
+    {
         $this->_resultPageFactory = $resultPageFactory;
         $this->_coreRegistry = $registry;
         $this->_model = $model;
@@ -46,7 +52,7 @@ class Edit extends Action
     }
 
     /**
-     * {@inheritdoc}
+     * @return bool
      */
     protected function _isAllowed()
     {
@@ -54,13 +60,10 @@ class Edit extends Action
     }
 
     /**
-     * Init actions
-     *
      * @return Page
      */
     protected function _initAction()
     {
-        // load layout, set active menu and breadcrumbs
         /** @var Page $resultPage */
         $resultPage = $this->_resultPageFactory->create();
         $resultPage->setActiveMenu('Tigren_Testimonial::testimonial')
@@ -70,17 +73,13 @@ class Edit extends Action
     }
 
     /**
-     * Edit Testimonial
-     *
-     * @return Page
-     * @SuppressWarnings(PHPMD.NPathComplexity)
+     * @return Page|Redirect
      */
     public function execute()
     {
         $id = $this->getRequest()->getParam('id');
         $model = $this->_model;
 
-        // If you have got an id, it's edition
         if ($id) {
             $model->load($id);
             if (!$model->getId()) {
@@ -99,7 +98,6 @@ class Edit extends Action
 
         $this->_coreRegistry->register('testimonial_testimonial', $model);
 
-        /** @var Page $resultPage */
         $resultPage = $this->_initAction();
         $resultPage->addBreadcrumb(
             $id ? __('Edit Testimonial') : __('New Testimonial'),

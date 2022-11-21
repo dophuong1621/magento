@@ -1,9 +1,9 @@
 <?php
 /**
-* @author Amasty Team
-* @copyright Copyright (c) 2022 Amasty (https://www.amasty.com)
-* @package Magento 2 Base Package
-*/
+ * @author Amasty Team
+ * @copyright Copyright (c) 2022 Amasty (https://www.amasty.com)
+ * @package Magento 2 Base Package
+ */
 
 namespace Amasty\Base\Ui\Component\Listing\Column;
 
@@ -29,19 +29,19 @@ class ViewAction extends Column
      * @param array $data
      */
     public function __construct(
-        ContextInterface $context,
+        ContextInterface   $context,
         UiComponentFactory $uiComponentFactory,
-        UrlInterface $urlBuilder,
-        array $components = [],
-        array $data = []
-    ) {
+        UrlInterface       $urlBuilder,
+        array              $components = [],
+        array              $data = []
+    )
+    {
         $this->urlBuilder = $urlBuilder;
         parent::__construct($context, $uiComponentFactory, $components, $data);
     }
 
     /**
      * Prepare Data Source
-     *
      * @param array $dataSource
      * @return array
      */
@@ -52,7 +52,7 @@ class ViewAction extends Column
                 if (isset($item[$this->getData('config/indexField')])) {
 
                     $urlEntityParamName = $this->getData('config/urlEntityParamName') ?: 'id';
-                    $config = (array) $this->getData('config');
+                    $config = (array)$this->getData('config');
                     if ($config && isset($config['buttons'])) {
                         foreach ($config['buttons'] as $actionName => $button) {
                             $label = $button['itemLabel'];

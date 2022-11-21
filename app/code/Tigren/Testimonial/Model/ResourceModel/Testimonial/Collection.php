@@ -11,7 +11,7 @@ use Magento\Framework\Model\ResourceModel\Db\Collection\AbstractCollection;
 
 /**
  * Class Collection
- * @package Tigren\HelloWorld\Model\ResourceModel\Testimonial
+ * @package Tigren\Testimonial\Model\ResourceModel\Testimonial
  */
 class Collection extends AbstractCollection
 {

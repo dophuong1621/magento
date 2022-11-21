@@ -8,13 +8,13 @@
 <routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
     <route method="POST" url="/V1/testimonial/save">
-        <service class="Tigren\Testimonial\Api\CustomInterface" method="saveTestimonial"/>
+        <service class="Tigren\Testimonial\Api\TestimonialInterface" method="saveTestimonial"/>
         <resources>
             <resource ref="anonymous"/>
         </resources>
     </route>
     <route method="POST" url="/V1/testimonial/delete">
-        <service class="Tigren\Testimonial\Api\CustomInterface" method="deleteTestimonial"/>
+        <service class="Tigren\Testimonial\Api\TestimonialInterface" method="deleteTestimonial"/>
         <resources>
             <resource ref="anonymous"/>
         </resources>

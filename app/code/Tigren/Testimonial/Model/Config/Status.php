@@ -16,7 +16,7 @@ use Magento\Framework\Option\ArrayInterface;
 class Status implements ArrayInterface
 {
     /**
-     * @return array[]
+     * @return array
      */
     public function toOptionArray()
     {

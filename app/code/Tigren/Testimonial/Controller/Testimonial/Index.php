@@ -5,13 +5,13 @@
  * @license   Open Software License ("OSL") v. 3.0
  */
 
-namespace Tigren\Testimonial\Controller\Storefront;
+namespace Tigren\Testimonial\Controller\Testimonial;
 
 use Magento\Framework\App\Action;
 
 /**
  * Class Index
- * @package Tigren\Testimonial\Controller\Storefront
+ * @package Tigren\Testimonial\Controller\Testimonial
  */
 class Index extends Action\Action
 {

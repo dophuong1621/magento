@@ -5,7 +5,7 @@
  * @license   Open Software License ("OSL") v. 3.0
  */
 
-namespace Tigren\Testimonial\Controller\Storefront;
+namespace Tigren\Testimonial\Controller\Testimonial;
 
 use Exception;
 use Magento\Framework\App\Action\Action;
@@ -18,7 +18,7 @@ use Tigren\Testimonial\Model\TestimonialFactory;
 
 /**
  * Class Update
- * @package Tigren\Testimonial\Controller\Storefront
+ * @package Tigren\Testimonial\Controller\Testimonial
  */
 class Update extends Action
 {
@@ -26,11 +26,6 @@ class Update extends Action
      * @var TestimonialFactory
      */
     protected $testimonialFactory;
-
-    /**
-     * @var
-     */
-    protected $session;
 
     /**
      * @var PageFactory
@@ -46,7 +41,6 @@ class Update extends Action
         TestimonialFactory $testimonialFactory,
         Context            $context,
         PageFactory        $pageFactory,
-
     )
     {
         $this->testimonialFactory = $testimonialFactory;
@@ -71,16 +65,15 @@ class Update extends Action
             'status' => $data['status'],
         ];
 
-        $post = $this->testimonialFactory->create()->load($id);
-        if (isset($newData)) {
-            $post->setData($newData);
-            $post->save();
+        $testimonial = $this->testimonialFactory->create()->load($id);
+        if ($id) {
+            $testimonial->setData($newData);
+            $testimonial->save();
             $this->messageManager->addSuccessMessage(__('You update the question success.'));
-            $resutl = $this->resultRedirectFactory->create()->setPath('testimonial/storefront/index');
+            return $this->resultRedirectFactory->create()->setPath('testimonial/storefront/index');
         } else {
             $this->messageManager->addErrorMessage('Error');
             return $this->pageFactory->create();
         }
-        return $resutl;
     }
 }

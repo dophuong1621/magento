@@ -4,39 +4,29 @@
  * @license   Open Software License ("OSL") v. 3.0
  */
 define([
-    'ko',
     'jquery',
     'mage/url',
+    'mage/storage',
 ], function (
-    ko,
     $,
     urlBuilder,
+    storage,
 ) {
     'use strict';
     $(document).ready(function () {
-        //create
         $('#submit').on('click', function () {
             var formData = new FormData($("#question-form")[0]);
             formData = JSON.stringify(Object.fromEntries(formData));
-            $('body').trigger('processStart');
-            $.ajax({
-                type: "POST",
-                url: urlBuilder.build("/V1/custom/getdata"),
-                data: formData,
-                dataType: 'json',
-                contentType: 'application/json',
-                success: function () {
-                    $('body').trigger('processStop');
-                    alert("Success");
-                },
-                error: function (xhr, ajaxOptions, thrownError) {
-                    $('body').trigger('processStop');
-                    alert("Errordffs");
-                },
+            storage.post(
+                urlBuilder.build("rest/V1/testimonial/save"),
+                JSON.stringify({data: formData})
+            ).done(function (r) {
+                window.location.replace(r);
+            }).fail(function (r) {
+                alert("Error");
             });
         });
 
-        //delete
         $('.delete').on('click', function () {
             var id = $('.id').text();
             $.ajax({

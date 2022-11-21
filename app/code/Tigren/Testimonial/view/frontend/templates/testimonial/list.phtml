@@ -5,13 +5,16 @@
  * @license   Open Software License ("OSL") v. 3.0
  */
 
-$testimonialCollection = $this->getLoadedTestimonialCollection();
-?>
+/**
+ * @var Tigren\Testimonial\Block\Testimonial\ListTestimonial $block
+ */
 
+$testimonialCollection = $block->getLoadedTestimonialCollection();
+?>
 <div class="table-wrapper orders-history">
     <h1>Testimonial</h1>
-    <form action="<?= $this->getUrl('testimonial/storefront/create') ?>">
-        <button type="submit" class="action submit " id="custom+btn">Add
+    <form action="<?= $this->getUrl('testimonial/testimonial/create') ?>">
+        <button type="submit" class="action submit " id="custom+btn">Add Testimonial
         </button>
     </form>
     <table class="data table table-order-items history" id="my-orders-table">
@@ -27,7 +30,6 @@ $testimonialCollection = $this->getLoadedTestimonialCollection();
             <th scope="col" class="col status"><?php echo __('Status') ?></th>
             <th scope="col" class="col created_at"><?php echo __('Created At ') ?></th>
             <th colspan="2"><?php echo __('Actions ') ?></th>
-
         </tr>
         </thead>
         <tbody>
@@ -43,7 +45,7 @@ $testimonialCollection = $this->getLoadedTestimonialCollection();
                 <td class="col status"><?php echo (1 == $testimonial->getStatus()) ? 'Enable' : 'Disable'; ?></td>
                 <td class="col date"><?php echo $testimonial->getCreatedAt() ?></td>
                 <td>
-                    <a href="http://magento.localhost.com/testimonial/storefront/edit?id=<?php echo $testimonial->getEntityId() ?>"
+                    <a href="http://magento.localhost.com/testimonial/testimonial/edit?id=<?php echo $testimonial->getEntityId() ?>"
                        class="edit">Edit</a>
                 </td>
                 <td>
@@ -54,9 +56,38 @@ $testimonialCollection = $this->getLoadedTestimonialCollection();
         </tbody>
     </table>
 </div>
+<!--<div class="liveExample">-->
+<!--    <p>First Name: <input data-bind="value: firstName"/></p>-->
+<!--    <p>Last Name: <input data-bind="value: lastName"/></p>-->
+<!--    <h2>Hellooooo <span data-bind="text: fullName"></span></h2>-->
+<!--</div>-->
+<!---->
+<!--<div data-bind="visible: shouldShowMessage">-->
+<!--    You will see this message only when "shouldShowMessage" holds a true value.-->
+<!--</div>-->
+<!---->
+<!--<script type="text/javascript">-->
+<!--    var viewModel = {-->
+<!--        shouldShowMessage: ko.observable(true) // Message initially visible-->
+<!--    };-->
+<!--    viewModel.shouldShowMessage(false); // ... now it's hidden-->
+<!--    viewModel.shouldShowMessage(true); // ... now it's visible again-->
+<!--</script>-->
 <!--<nav data-mage-init="{'create-api': {}}"></nav>-->
-
+<!--<script src="//code.aspnetcdn.com/ajax/knockout/knockout-3-0-0.js"></script>-->
+<!--<script src="//ajax.jquery.com/jquery-2.1.3.js"></script>-->
 <script type="text/javascript">
+    // $(function () {
+    //     var viewModel = function (first, last) {
+    //         this.firstName = ko.observable(first);
+    //         this.lastName = ko.observable(last);
+    //
+    //         this.fullName = ko.computed(function () {
+    //             return this.firstName() + " " + this.lastName();
+    //         }, this);
+    //     };
+    //     ko.applyBindings(new viewModel("Do", "Phuong"));
+    // });
     require(['jquery', 'mage/storage', 'mage/url'], function ($, storage, urlBuilder) {
         $('.delete-action').on('click', function () {
             var idTestimonial = parseInt($(this).attr('testimonial-id'));
@@ -64,10 +95,12 @@ $testimonialCollection = $this->getLoadedTestimonialCollection();
                 urlBuilder.build("rest/V1/testimonial/delete"),
                 JSON.stringify({id: idTestimonial})
             ).done(function (r) {
-                alert("Delete Testimonial Success");
+                window.location.replace(r);
             }).fail(function (r) {
                 alert("Error");
             });
         });
     });
 </script>
+
+

@@ -8,18 +8,19 @@
 namespace Tigren\Testimonial\Api;
 
 /**
- *
+ * Class TestimonialInterface
+ * @package TestimonialInterface
  */
-interface CustomInterface
+interface TestimonialInterface
 {
     /**
      * @param string $data
-     * @return mixed
+     * @return array
      */
     public function saveTestimonial($data);
 
     /**
-     * @return mixed
+     * @return array
      */
     public function deleteTestimonial(int $id);
 }

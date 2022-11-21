@@ -12,16 +12,12 @@ use Tigren\Testimonial\Model\ResourceModel\Testimonial\CollectionFactory;
 
 /**
  * Class DataProvider
- * @package Tigren\HelloWorld\Model\Config
+ * @package Tigren\Testimonial\Model\Config
  */
 class DataProvider extends AbstractDataProvider
 {
     /**
-     * @var
-     */
-    protected $_loadedData;
-    /**
-     * @var
+     * @var CollectionFactory
      */
     protected $collection;
 
@@ -30,20 +26,16 @@ class DataProvider extends AbstractDataProvider
      * @param string $primaryFieldName
      * @param string $requestFieldName
      * @param CollectionFactory $collectionFactory
-     * @param array $meta
-     * @param array $data
      */
     public function __construct(
         $name,
         $primaryFieldName,
         $requestFieldName,
         CollectionFactory $collectionFactory,
-        array $meta = [],
-        array $data = []
     )
     {
-        $this->collection = $collectionFactory->create();
-        parent::__construct($name, $primaryFieldName, $requestFieldName, $meta, $data);
+        $this->collection = $collectionFactory;
+        parent::__construct($name, $primaryFieldName, $requestFieldName);
     }
 
     /**
@@ -54,7 +46,7 @@ class DataProvider extends AbstractDataProvider
         if (isset($this->_loadedData)) {
             return $this->_loadedData;
         }
-        $items = $this->collection->getItems();
+        $items = $this->collection->create()->getItems();
         foreach ($items as $item) {
             $this->_loadedData[$item->getId()] = $item->getData();
         }

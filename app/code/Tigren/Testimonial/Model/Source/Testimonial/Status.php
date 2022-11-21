@@ -7,26 +7,29 @@
 
 namespace Tigren\Testimonial\Model\Source\Testimonial;
 
-class Status implements \Magento\Framework\Data\OptionSourceInterface
+use Magento\Framework\Data\OptionSourceInterface;
+use Tigren\Testimonial\Model\Testimonial;
+
+/**
+ * Class Status
+ * @package Tigren\Testimonial\Model\Source\Testimonial
+ */
+class Status implements OptionSourceInterface
 {
     /**
-     * @var \Tigren\Testimonial\Model\Testimonial
+     * @var Testimonial
      */
     protected $_testimonial;
 
     /**
-     * Constructor
-     *
-     * @param \Tigren\Testimonial\Model\Testimonial $testimonial
+     * @param Testimonial $_testimonial
      */
-    public function __construct(\Tigren\Testimonial\Model\Testimonial $testimonial)
+    public function __construct(Testimonial $_testimonial)
     {
-        $this->_testimonial = $testimonial;
+        $this->_testimonial = $_testimonial;
     }
 
     /**
-     * Get options
-     *
      * @return array
      */
     public function toOptionArray()

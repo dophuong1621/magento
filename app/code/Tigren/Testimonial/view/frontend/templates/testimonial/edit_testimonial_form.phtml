@@ -6,7 +6,7 @@
  */
 
 /**
- * @var Tigren\Testimonial\Block\Storefront\Edit $block
+ * @var Tigren\Testimonial\Block\Testimonial\Edit $block
  */
 
 use Magento\Customer\Block\Form\Login;
@@ -20,7 +20,6 @@ $data = $block->getEditData();
 <div class="block block-customer-login">
     <div class="block-content" aria-labelledby="block-customer-login-heading">
         <form class="form form-login"
-              action=""
               method="post"
               id="question-form-edit"
               data-mage-init='{"validation":{}}'>
@@ -102,7 +101,7 @@ $data = $block->getEditData();
                 urlBuilder.build("rest/V1/testimonial/save"),
                 JSON.stringify({data: formData})
             ).done(function (r) {
-                alert("Update Testimonial Success");
+                window.location.replace(r);
             }).fail(function (r) {
                 alert("Error");
             });

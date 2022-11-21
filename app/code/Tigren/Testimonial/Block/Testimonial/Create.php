@@ -6,14 +6,14 @@
  * @license   Open Software License ("OSL") v. 3.0
  */
 
-namespace Tigren\Testimonial\Block\Storefront;
+namespace Tigren\Testimonial\Block\Testimonial;
 
 use Magento\Framework\View\Element\Template;
 use Magento\Framework\View\Element\Template\Context;
 
 /**
  * Class Create
- * @package Tigren\Testimonial\Block\Storefront
+ * @package Tigren\Testimonial\Block\Testimonial
  */
 class Create extends Template
 {

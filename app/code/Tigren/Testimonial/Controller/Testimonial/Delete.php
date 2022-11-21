@@ -5,49 +5,41 @@
  * @license   Open Software License ("OSL") v. 3.0
  */
 
-namespace Tigren\Testimonial\Controller\Storefront;
+namespace Tigren\Testimonial\Controller\Testimonial;
 
 use Exception;
 use Magento\Framework\App\Action\Action;
 use Magento\Framework\App\Action\Context;
 use Magento\Framework\App\Request\Http;
 use Magento\Framework\App\ResponseInterface;
-use Magento\Framework\View\Result\PageFactory;
 use Tigren\Testimonial\Model\TestimonialFactory;
 
 /**
  * Class Delete
- * @package Tigren\Testimonial\Controller\Storefront
+ * @package Tigren\Testimonial\Controller\Testimonial
  */
 class Delete extends Action
 {
     /**
-     * @var PageFactory
-     */
-    protected $_pageFactory;
-    /**
      * @var Http
      */
     protected $_request;
+
     /**
      * @var TestimonialFactory
      */
-    protected $_testimonialFactory;
+    private $_tesimonialFactory;
 
     /**
      * @param Context $context
-     * @param PageFactory $pageFactory
      * @param Http $request
      * @param TestimonialFactory $_testimonialFactory
      */
     public function __construct(
         Context            $context,
-        PageFactory        $pageFactory,
         Http               $request,
         TestimonialFactory $_testimonialFactory
-    )
-    {
-        $this->_pageFactory = $pageFactory;
+    ) {
         $this->_request = $request;
         $this->_tesimonialFactory = $_testimonialFactory;
         return parent::__construct($context);
@@ -60,8 +52,8 @@ class Delete extends Action
     public function execute()
     {
         $id = $this->_request->getParam('id');
-        $postData = $this->_tesimonialFactory->create()->load($id);
-        $postData->delete();
+        $testimonial = $this->_tesimonialFactory->create()->load($id);
+        $testimonial->delete();
         return $this->_redirect('testimonial/storefront/index');
     }
 }

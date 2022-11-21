@@ -5,51 +5,34 @@
  * @license   Open Software License ("OSL") v. 3.0
  */
 
-namespace Tigren\Testimonial\Controller\Storefront;
+namespace Tigren\Testimonial\Controller\Testimonial;
 
 use Magento\Framework\App\Action\Action;
 use Magento\Framework\App\Action\Context;
-use Magento\Framework\App\Request\Http;
 use Magento\Framework\Controller\ResultInterface;
-use Magento\Framework\Registry;
 use Magento\Framework\View\Result\Page;
 use Magento\Framework\View\Result\PageFactory;
 
 /**
- * Class Edit
- * @package Tigren\Testimonial\Controller\Storefront
+ * Class Create
+ * @package Tigren\Testimonial\Controller\Testimonial
  */
-class Edit extends Action
+class Create extends Action
 {
     /**
      * @var PageFactory
-     */
+     **/
     protected $_pageFactory;
-    /**
-     * @var Http
-     */
-    protected $_request;
-    /**
-     * @var Registry
-     */
-    protected $_coreRegistry;
 
     /**
      * @param Context $context
      * @param PageFactory $pageFactory
-     * @param Http $request
-     * @param Registry $coreRegistry
      */
     public function __construct(
         Context     $context,
-        PageFactory $pageFactory,
-        Http        $request,
-        Registry    $coreRegistry
-    )
-    {
+        PageFactory $pageFactory
+    ) {
         $this->_pageFactory = $pageFactory;
-        $this->_request = $request;
-        $this->_coreRegistry = $coreRegistry;
         return parent::__construct($context);
     }
 
@@ -58,8 +41,6 @@ class Edit extends Action
      */
     public function execute()
     {
-        $id = $this->getRequest()->getParam('id');
-        $this->_coreRegistry->register('editId', $id);
         return $this->_pageFactory->create();
     }
 }

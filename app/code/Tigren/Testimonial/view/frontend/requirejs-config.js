@@ -4,15 +4,10 @@
  * @license   Open Software License ("OSL") v. 3.0
  */
 
-
 var config = {
     map: {
         '*': {
             'api-testimonial': 'Tigren_Testimonial/js/api-testimonial'
         }
     }
-    // deps: [
-    //     'Tigren_Testimonial/js/create-testimonial',
-    //     'Tigren_Testimonial/js/delete-testimonial',
-    // ]
 };

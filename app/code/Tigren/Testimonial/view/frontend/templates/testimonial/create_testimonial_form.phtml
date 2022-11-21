@@ -5,10 +5,6 @@
  * @license   Open Software License ("OSL") v. 3.0
  */
 
-/** @var Login $block */
-
-use Magento\Customer\Block\Form\Login;
-
 ?>
 <div class="block block-customer-login">
     <div class="block-content" aria-labelledby="block-customer-login-heading">
@@ -16,49 +12,49 @@ use Magento\Customer\Block\Form\Login;
               method="post"
               id="question-form"
               data-mage-init='{"validation":{}}'>
-            <fieldset class="fieldset login" data-hasrequired="<?= $block->escapeHtml(__('* Required Fields')) ?>">
+            <fieldset class="fieldset login" data-hasrequired="<?= $this->escapeHtml(__('* Required Fields')) ?>">
                 <div class="field title required">
-                    <label class="label" for="name"><span><?= $block->escapeHtml(__('Name')) ?></span></label>
+                    <label class="label" for="name"><span><?= $this->escapeHtml(__('Name')) ?></span></label>
                     <div class="control">
                         <input name="name" value="" type="text"
                                id="name" class="input-text"
-                               title="<?= $block->escapeHtmlAttr(__('Name')) ?>">
+                               title="<?= $this->escapeHtmlAttr(__('Name')) ?>">
                     </div>
                 </div>
                 <div class="field content required">
-                    <label class="label" for="email"><span><?= $block->escapeHtml(__('Email')) ?></span></label>
+                    <label class="label" for="email"><span><?= $this->escapeHtml(__('Email')) ?></span></label>
                     <div class="email">
                         <input name="email" value=""
                                id="email" type="text" class="input-text"
-                               title="<?= $block->escapeHtmlAttr(__('Email')) ?>">
+                               title="<?= $this->escapeHtmlAttr(__('Email')) ?>">
                     </div>
                 </div>
                 <div class="field content required">
-                    <label class="label" for="message"><span><?= $block->escapeHtml(__('Message')) ?></span></label>
+                    <label class="label" for="message"><span><?= $this->escapeHtml(__('Message')) ?></span></label>
                     <div class="message">
                         <input name="message" value=""
                                id="message" type="text" class="input-text"
-                               title="<?= $block->escapeHtmlAttr(__('Message')) ?>">
+                               title="<?= $this->escapeHtmlAttr(__('Message')) ?>">
                     </div>
                 </div>
                 <div class="field content required">
-                    <label class="label" for="company"><span><?= $block->escapeHtml(__('Company')) ?></span></label>
+                    <label class="label" for="company"><span><?= $this->escapeHtml(__('Company')) ?></span></label>
                     <div class="company">
                         <input name="company" value=""
                                id="company" type="text" class="input-text"
-                               title="<?= $block->escapeHtmlAttr(__('Company')) ?>">
+                               title="<?= $this->escapeHtmlAttr(__('Company')) ?>">
                     </div>
                 </div>
                 <div class="field content required">
-                    <label class="label" for="rating"><span><?= $block->escapeHtml(__('Rating')) ?></span></label>
+                    <label class="label" for="rating"><span><?= $this->escapeHtml(__('Rating')) ?></span></label>
                     <div class="rating">
                         <input name="rating" value=""
                                id="rating" type="number" class="input-text"
-                               title="<?= $block->escapeHtmlAttr(__('Rating')) ?>">
+                               title="<?= $this->escapeHtmlAttr(__('Rating')) ?>">
                     </div>
                 </div>
                 <div class="field content required">
-                    <label class="label" for="status"><span><?= $block->escapeHtml(__('Status')) ?></span></label>
+                    <label class="label" for="status"><span><?= $this->escapeHtml(__('Status')) ?></span></label>
                     <select name="status" id="status">
                         <option value="0">Disable</option>
                         <option value="1">Enable</option>
@@ -67,7 +63,7 @@ use Magento\Customer\Block\Form\Login;
                 <div class="actions-toolbar">
                     <div class="primary">
                         <button class="action login primary" name="send" id="submit">
-                            <span><?= $block->escapeHtml(__('Save')) ?></span>
+                            <span><?= $this->escapeHtml(__('Save')) ?></span>
                         </button>
                     </div>
                 </div>
@@ -84,7 +80,7 @@ use Magento\Customer\Block\Form\Login;
                 urlBuilder.build("rest/V1/testimonial/save"),
                 JSON.stringify({data: formData})
             ).done(function (r) {
-                alert("Create Testimonial Success");
+                window.location.replace(r);
             }).fail(function (r) {
                 alert("Error");
             });

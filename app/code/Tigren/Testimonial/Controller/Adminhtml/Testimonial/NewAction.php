@@ -28,7 +28,7 @@ class NewAction extends Action
      * @param ForwardFactory $resultForwardFactory
      */
     public function __construct(
-        Context               $context,
+        Context        $context,
         ForwardFactory $resultForwardFactory
     ) {
         $this->_resultForwardFactory = $resultForwardFactory;
@@ -36,7 +36,7 @@ class NewAction extends Action
     }
 
     /**
-     * {@inheritdoc}
+     * @return bool
      */
     protected function _isAllowed()
     {
@@ -44,8 +44,6 @@ class NewAction extends Action
     }
 
     /**
-     * Forward to edit
-     *
      * @return Forward
      */
     public function execute()

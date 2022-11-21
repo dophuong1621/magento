@@ -15,35 +15,24 @@ use Magento\Framework\Model\AbstractModel;
  */
 class Testimonial extends AbstractModel
 {
-    /**
-     *
-     */
-    const Testimonial_ID = 'entity_id'; // We define the id fieldname
+    const Testimonial_ID = 'entity_id';
 
     /**
-     * Prefix of model events names
-     *
      * @var string
      */
     protected $_eventPrefix = 'testimonial';
 
     /**
-     * Name of the event object
-     *
      * @var string
      */
     protected $_eventObject = 'testimonial';
 
     /**
-     * Name of object id field
-     *
      * @var string
      */
     protected $_idFieldName = self::Testimonial_ID;
 
     /**
-     * Initialize resource model
-     *
      * @return void
      */
     protected function _construct()
@@ -52,26 +41,10 @@ class Testimonial extends AbstractModel
     }
 
     /**
-     * @return int
-     */
-    public function getEnableStatus()
-    {
-        return 1;
-    }
-
-    /**
-     * @return int
-     */
-    public function getDisableStatus()
-    {
-        return 0;
-    }
-
-    /**
      * @return array
      */
     public function getAvailableStatuses()
     {
-        return [$this->getDisableStatus() => __('Disabled'), $this->getEnableStatus() => __('Enabled')];
+        return [1 => __('Disabled'), 0 => __('Enabled')];
     }
 }
