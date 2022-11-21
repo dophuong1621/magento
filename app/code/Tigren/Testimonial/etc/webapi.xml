@@ -7,32 +7,14 @@
 
 <routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
-    <route method="POST" url="/V1/custom/custom-api/">
-        <service class="Tigren\Testimonial\Api\CustomInterface" method="getPost"/>
+    <route method="POST" url="/V1/testimonial/save">
+        <service class="Tigren\Testimonial\Api\CustomInterface" method="saveTestimonial"/>
         <resources>
             <resource ref="anonymous"/>
         </resources>
     </route>
-    <route method="GET" url="/V1/custom/getdata/">
-        <service class="Tigren\Testimonial\Api\CustomInterface" method="getData"/>
-        <resources>
-            <resource ref="anonymous"/>
-        </resources>
-    </route>
-    <route method="GET" url="/V1/custom/delete/">
-        <service class="Tigren\Testimonial\Api\CustomInterface" method="getDelete"/>
-        <resources>
-            <resource ref="anonymous"/>
-        </resources>
-    </route>
-    <route method="GET" url="/V1/custom/getbyid/">
-        <service class="Tigren\Testimonial\Api\CustomInterface" method="getById"/>
-        <resources>
-            <resource ref="anonymous"/>
-        </resources>
-    </route>
-    <route method="POST" url="/V1/custom/edit/">
-        <service class="Tigren\Testimonial\Api\CustomInterface" method="getEdit"/>
+    <route method="POST" url="/V1/testimonial/delete">
+        <service class="Tigren\Testimonial\Api\CustomInterface" method="deleteTestimonial"/>
         <resources>
             <resource ref="anonymous"/>
         </resources>

@@ -71,9 +71,9 @@ class Save extends Action
                 'status' => $data['status']
             ];
             if (!empty($newData)) {
-                $model = $this->_testimonialFactory->create();
-                $model->addData($newData);
-                $model->save();
+//                $model = $this->_testimonialFactory->create();
+//                $model->addData($newData);
+//                $model->save();
                 $this->messageManager->addSuccessMessage(__("Data Created Successfully."));
             }
         } catch (Exception $e) {

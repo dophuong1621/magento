@@ -32,24 +32,24 @@ class Delete extends Action
     /**
      * @var TestimonialFactory
      */
-    protected $_contactFactory;
+    protected $_testimonialFactory;
 
     /**
      * @param Context $context
      * @param PageFactory $pageFactory
      * @param Http $request
-     * @param TestimonialFactory $contactFactory
+     * @param TestimonialFactory $_testimonialFactory
      */
     public function __construct(
         Context            $context,
         PageFactory        $pageFactory,
         Http               $request,
-        TestimonialFactory $contactFactory
+        TestimonialFactory $_testimonialFactory
     )
     {
         $this->_pageFactory = $pageFactory;
         $this->_request = $request;
-        $this->_contactFactory = $contactFactory;
+        $this->_tesimonialFactory = $_testimonialFactory;
         return parent::__construct($context);
     }
 
@@ -60,8 +60,7 @@ class Delete extends Action
     public function execute()
     {
         $id = $this->_request->getParam('id');
-        $postData = $this->_contactFactory->create()->load($id);
-        $postData->getData('entity_id');
+        $postData = $this->_tesimonialFactory->create()->load($id);
         $postData->delete();
         return $this->_redirect('testimonial/storefront/index');
     }

@@ -33,7 +33,8 @@ $testimonialCollection = $this->getLoadedTestimonialCollection();
         <tbody>
         <?php foreach ($testimonialCollection as $testimonial): ?>
             <tr>
-                <td class="col id"><?php echo $testimonial->getId() ?></td>
+                <td class="col id" id="id"
+                ><?php echo $testimonial->getId() ?></td>
                 <td class="col name"><?php echo $testimonial->getName() ?></td>
                 <td class="col email"><?php echo $testimonial->getEmail() ?></td>
                 <td class="col message"><?php echo $testimonial->getMessage() ?></td>
@@ -42,13 +43,31 @@ $testimonialCollection = $this->getLoadedTestimonialCollection();
                 <td class="col status"><?php echo (1 == $testimonial->getStatus()) ? 'Enable' : 'Disable'; ?></td>
                 <td class="col date"><?php echo $testimonial->getCreatedAt() ?></td>
                 <td>
-                    <a href="http://magento.localhost.com/testimonial/storefront/edit?id=<?php echo $testimonial->getEntityId() ?>">Edit</a>
+                    <a href="http://magento.localhost.com/testimonial/storefront/edit?id=<?php echo $testimonial->getEntityId() ?>"
+                       class="edit">Edit</a>
                 </td>
                 <td>
-                    <a href="http://magento.localhost.com/testimonial/storefront/delete?id=<?php echo $testimonial->getEntityId() ?>">Delete</a>
+                    <a class="delete-action" testimonial-id="<?php echo $testimonial->getEntityId() ?>">Delete</a>
                 </td>
             </tr>
         <?php endforeach; ?>
         </tbody>
     </table>
 </div>
+<!--<nav data-mage-init="{'create-api': {}}"></nav>-->
+
+<script type="text/javascript">
+    require(['jquery', 'mage/storage', 'mage/url'], function ($, storage, urlBuilder) {
+        $('.delete-action').on('click', function () {
+            var idTestimonial = parseInt($(this).attr('testimonial-id'));
+            storage.post(
+                urlBuilder.build("rest/V1/testimonial/delete"),
+                JSON.stringify({id: idTestimonial})
+            ).done(function (r) {
+                alert("Delete Testimonial Success");
+            }).fail(function (r) {
+                alert("Error");
+            });
+        });
+    });
+</script>

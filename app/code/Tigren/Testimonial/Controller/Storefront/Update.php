@@ -25,7 +25,7 @@ class Update extends Action
     /**
      * @var TestimonialFactory
      */
-    protected $postFactory;
+    protected $testimonialFactory;
 
     /**
      * @var
@@ -38,18 +38,18 @@ class Update extends Action
     protected $pageFactory;
 
     /**
-     * @param TestimonialFactory $postFactory
+     * @param TestimonialFactory $testimonialFactory
      * @param Context $context
      * @param PageFactory $pageFactory
      */
     public function __construct(
-        TestimonialFactory $postFactory,
+        TestimonialFactory $testimonialFactory,
         Context            $context,
         PageFactory        $pageFactory,
 
     )
     {
-        $this->postFactory = $postFactory;
+        $this->testimonialFactory = $testimonialFactory;
         $this->pageFactory = $pageFactory;
         return parent::__construct($context);
     }
@@ -71,9 +71,9 @@ class Update extends Action
             'status' => $data['status'],
         ];
 
-        $post = $this->postFactory->create()->load($id);
+        $post = $this->testimonialFactory->create()->load($id);
         if (isset($newData)) {
-            $post->addData($newData);
+            $post->setData($newData);
             $post->save();
             $this->messageManager->addSuccessMessage(__('You update the question success.'));
             $resutl = $this->resultRedirectFactory->create()->setPath('testimonial/storefront/index');
