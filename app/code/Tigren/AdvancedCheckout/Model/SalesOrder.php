@@ -15,35 +15,24 @@ use Magento\Framework\Model\AbstractModel;
  */
 class SalesOrder extends AbstractModel
 {
-    /**
-     *
-     */
     const SALESID = 'entity_id';
 
     /**
-     * Prefix of model events names
-     *
      * @var string
      */
     protected $_eventPrefix = 'checkout';
 
     /**
-     * Name of the event object
-     *
      * @var string
      */
     protected $_eventObject = 'checkout';
 
     /**
-     * Name of object id field
-     *
      * @var string
      */
     protected $_idFieldName = self::SALESID;
 
     /**
-     * Initialize resource model
-     *
      * @return void
      */
     protected function _construct()

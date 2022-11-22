@@ -8,13 +8,10 @@
 namespace Tigren\AdvancedCheckout\Controller\Checkout;
 
 use Magento\Checkout\Model\Cart;
-use Magento\Checkout\Model\Session;
 use Magento\Framework\App\Action\Action;
 use Magento\Framework\App\Action\Context;
-use Magento\Framework\App\ResponseInterface;
 use Magento\Framework\Controller\Result\Json;
 use Magento\Framework\Controller\Result\JsonFactory;
-use Magento\Framework\Controller\ResultInterface;
 
 /**
  * Class AdvancedCheckout
@@ -22,11 +19,6 @@ use Magento\Framework\Controller\ResultInterface;
  */
 class ClearCart extends Action
 {
-
-    /**
-     * @var Session
-     */
-    private $session;
 
     /**
      * @var Cart
@@ -42,13 +34,11 @@ class ClearCart extends Action
      * @param Cart $cart
      * @param Context $context
      * @param JsonFactory $resultJsonFactory
-     * @param Session $session
      */
     public function __construct(
         Cart        $cart,
         Context     $context,
         JsonFactory $resultJsonFactory,
-        Session     $session,
     ) {
         parent::__construct($context);
         $this->cart = $cart;
@@ -56,7 +46,7 @@ class ClearCart extends Action
     }
 
     /**
-     * @return ResponseInterface|Json|ResultInterface
+     * @return Json
      */
     public function execute()
     {

@@ -10,12 +10,12 @@ namespace Tigren\AdvancedCheckout\Model\ResourceModel;
 use Magento\Framework\Model\ResourceModel\Db\AbstractDb;
 
 /**
- * SalesOrder post mysql resource
+ * Class SalesOrder
+ * @package Tigren\AdvancedCheckout\Model\ResourceModel
  */
 class SalesOrder extends AbstractDb
 {
     /**
-     * Initialize resource model
      * @return void
      */
     protected function _construct()

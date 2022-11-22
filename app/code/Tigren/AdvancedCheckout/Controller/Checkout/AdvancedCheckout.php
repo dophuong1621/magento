@@ -71,7 +71,6 @@ class AdvancedCheckout extends Action
 
     /**
      * @return Json
-     * @throws Zend_Log_Exception
      */
     public function execute()
     {
@@ -107,7 +106,6 @@ class AdvancedCheckout extends Action
                     }
                 }
             }
-
         }
 
         $resultJson = $this->resultJsonFactory->create();

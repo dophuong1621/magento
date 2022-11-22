@@ -7,6 +7,7 @@
 
 namespace Tigren\CustomerGroupCatalog\Controller\CustomerGroup;
 
+use Magento\Framework\App\Action\Action;
 use Magento\Framework\App\Action\Context;
 use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Framework\App\ResponseInterface;
@@ -20,7 +21,7 @@ use Magento\Store\Model\ScopeInterface;
  * Class Index
  * @package Tigren\CustomerGroupCatalog\Controller\CustomerGroup
  */
-class Index extends \Magento\Framework\App\Action\Action
+class Index extends Action
 {
     /**
      * @var PageFactory
@@ -30,7 +31,6 @@ class Index extends \Magento\Framework\App\Action\Action
     /**
      * @var ScopeConfigInterface
      */
-
     protected $scopeConfig;
 
     /**
@@ -44,7 +44,8 @@ class Index extends \Magento\Framework\App\Action\Action
         PageFactory          $pageFactory,
         ScopeConfigInterface $scopeConfig,
         Redirect             $resultRedirectFactory
-    ) {
+    )
+    {
         $this->_pageFactory = $pageFactory;
         $this->scopeConfig = $scopeConfig;
         $this->resultRedirectFactory = $resultRedirectFactory;

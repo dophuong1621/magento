@@ -178,10 +178,8 @@ define([
                                     self.isPlaceOrderActionAllowed(true);
                                 }
                             );
-
                             return true;
                         }
-
                         return false;
                     }
                 },

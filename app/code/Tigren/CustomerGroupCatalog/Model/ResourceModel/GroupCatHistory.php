@@ -15,7 +15,6 @@ use Magento\Framework\Model\ResourceModel\Db\AbstractDb;
 class GroupCatHistory extends AbstractDb
 {
     /**
-     * Initialize resource model
      * @return void
      */
     protected function _construct()

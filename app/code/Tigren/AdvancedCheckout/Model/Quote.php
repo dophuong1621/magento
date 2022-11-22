@@ -15,35 +15,24 @@ use Magento\Framework\Model\AbstractModel;
  */
 class Quote extends AbstractModel
 {
-    /**
-     *
-     */
     const QUOTEITEM_ID = 'item_id';
 
     /**
-     * Prefix of model events names
-     *
      * @var string
      */
     protected $_eventPrefix = 'checkout';
 
     /**
-     * Name of the event object
-     *
      * @var string
      */
     protected $_eventObject = 'checkout';
 
     /**
-     * Name of object id field
-     *
      * @var string
      */
     protected $_idFieldName = self::QUOTEITEM_ID;
 
     /**
-     * Initialize resource model
-     *
      * @return void
      */
     protected function _construct()

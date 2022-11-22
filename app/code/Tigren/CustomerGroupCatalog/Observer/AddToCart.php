@@ -11,16 +11,12 @@ use Exception;
 use Magento\Checkout\Model\Session;
 use Magento\Framework\Event\Observer;
 use Magento\Framework\Event\ObserverInterface;
-use Magento\Framework\Exception\LocalizedException;
-use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Framework\Stdlib\DateTime\DateTimeFactory;
+use Psr\Log\LoggerInterface;
 use Tigren\CustomerGroupCatalog\Model\ResourceModel\GroupCat\CollectionFactory;
-use Zend_Log;
-use Zend_Log_Exception;
-use Zend_Log_Writer_Stream;
 
 /**
- * Class GetQuote
+ * Class AddToCart
  * @package Tigren\CustomerGroupCatalog\Observer
  */
 class AddToCart implements ObserverInterface
@@ -41,28 +37,33 @@ class AddToCart implements ObserverInterface
     private $dateTimeFactory;
 
     /**
+     * @var LoggerInterface
+     */
+    protected $logger;
+
+    /**
      * @param Session $checkoutSession
      * @param CollectionFactory $collectionFactory
      * @param DateTimeFactory $dateTimeFactory
+     * @param LoggerInterface $logger
      */
 
     public function __construct(
         Session           $checkoutSession,
         CollectionFactory $collectionFactory,
         DateTimeFactory   $dateTimeFactory,
+        LoggerInterface   $logger,
     )
     {
         $this->_checkoutSession = $checkoutSession;
         $this->collectionFactory = $collectionFactory;
         $this->dateTimeFactory = $dateTimeFactory;
+        $this->logger = $logger;
     }
 
     /**
      * @param Observer $observer
      * @return void
-     * @throws LocalizedException
-     * @throws NoSuchEntityException
-     * @throws Zend_Log_Exception
      */
     public function execute(Observer $observer)
     {
@@ -99,10 +100,7 @@ class AddToCart implements ObserverInterface
                 $quoteItem->getProduct()->setIsSuperMode(true);
             }
         } catch (Exception $e) {
-            $writer = new Zend_Log_Writer_Stream(BP . '/var/log/custom.log');
-            $logger = new Zend_Log();
-            $logger->addWriter($writer);
-            $logger->info(print_r($e->getMessage(), true));
+            $this->logger->error($e->getMessage(), $e->getTrace());
         }
     }
 }

@@ -14,8 +14,4 @@
         <observer name="place_order_after_groupcat"
                   instance="Tigren\CustomerGroupCatalog\Observer\OrderGroupCat"/>
     </event>
-    <!--    <event name="sales_quote_remove_item">-->
-    <!--        <observer name="sales_quote_remove_item_groupcat"-->
-    <!--                  instance="Tigren\CustomerGroupCatalog\Observer\QuoteRemoveItem"/>-->
-    <!--    </event>-->
 </config>

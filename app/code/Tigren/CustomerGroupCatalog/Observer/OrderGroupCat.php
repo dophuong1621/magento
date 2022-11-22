@@ -14,9 +14,7 @@ use Magento\Framework\Event\ObserverInterface;
 use Magento\Sales\Model\Order;
 use Psr\Log\LoggerInterface;
 use Tigren\CustomerGroupCatalog\Model\GroupCatHistory;
-use Zend_Log;
 use Zend_Log_Exception;
-use Zend_Log_Writer_Stream;
 
 /**
  * Class OrderGroupCat
@@ -48,8 +46,10 @@ class OrderGroupCat implements ObserverInterface
 
     /**
      * @param Session $customerSession
+     * @param Session $checkoutSession
+     * @param GroupCatHistory $groupCatHistory
+     * @param LoggerInterface $logger
      */
-
     public function __construct(
         Session         $customerSession,
         Session         $checkoutSession,

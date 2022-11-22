@@ -10,12 +10,12 @@ namespace Tigren\AdvancedCheckout\Model\ResourceModel;
 use Magento\Framework\Model\ResourceModel\Db\AbstractDb;
 
 /**
- * Quote post mysql resource
+ * Class CustomerEntity
+ * @package Tigren\AdvancedCheckout\Model\ResourceModel
  */
 class CustomerEntity extends AbstractDb
 {
     /**
-     * Initialize resource model
      * @return void
      */
     protected function _construct()

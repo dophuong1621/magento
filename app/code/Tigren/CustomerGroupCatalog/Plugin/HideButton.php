@@ -16,7 +16,6 @@ use Magento\Framework\App\Http\Context;
  */
 class HideButton
 {
-
     /**
      * @var Context
      */

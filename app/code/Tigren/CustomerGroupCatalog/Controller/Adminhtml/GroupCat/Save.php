@@ -10,40 +10,32 @@ namespace Tigren\CustomerGroupCatalog\Controller\Adminhtml\GroupCat;
 use Exception;
 use Magento\Backend\App\Action;
 use Magento\Backend\App\Action\Context;
-use Magento\Framework\App\ResourceConnection;
 use Magento\Framework\Controller\Result\Redirect;
 use Tigren\CustomerGroupCatalog\Model\GroupCat;
 
 /**
  * Class Save
- * @package Tigren\CustomerGroupCatalog\Controller\Adminhtml\Post
+ * @package Tigren\CustomerGroupCatalog\Controller\Adminhtml\GroupCat
  */
 class Save extends Action
 {
     /**
-     * @var ResourceConnection
-     */
-    private ResourceConnection $connection;
-    /**
      * @var GroupCat
      */
-    private GroupCat $groupCatFactory;
+    private $groupCatFactory;
 
     /**
      * Save constructor.
      * @param Context $context
      * @param GroupCat $groupCatFactory
-     * @param ResourceConnection $connection
      */
     public function __construct(
-        Context            $context,
-        GroupCat           $groupCatFactory,
-        ResourceConnection $connection,
+        Context  $context,
+        GroupCat $groupCatFactory,
     )
     {
         parent::__construct($context);
         $this->groupCatFactory = $groupCatFactory;
-        $this->connection = $connection;
     }
 
     /**

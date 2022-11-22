@@ -7,16 +7,13 @@
 
 namespace Tigren\AdvancedCheckout\Controller\PlaceOrder;
 
-use Magento\Checkout\Model\Cart;
 use Magento\Customer\Model\Session;
 use Magento\Framework\App\Action\Action;
 use Magento\Framework\App\Action\Context;
 use Magento\Framework\Controller\Result\Json;
 use Magento\Framework\Controller\Result\JsonFactory;
 use Tigren\AdvancedCheckout\Model\ResourceModel\SalesOrder\CollectionFactory;
-use Zend_Log;
 use Zend_Log_Exception;
-use Zend_Log_Writer_Stream;
 
 /**
  * Class AdvancedCheckout
@@ -35,30 +32,24 @@ class PlaceOrder extends Action
     private $salesOrderFactory;
 
     /**
-     * @var Cart
-     */
-    private $cart;
-
-    /**
      * @var Session
      */
     private $_customerSession;
 
     /**
-     * @param Cart $cart
      * @param Context $context
+     * @param CollectionFactory $salesOrderFactory
+     * @param Session $customerSession
+     * @param JsonFactory $resultJsonFactory
      */
     public function __construct(
-        Cart              $cart,
         Context           $context,
         CollectionFactory $salesOrderFactory,
         Session           $customerSession,
         JsonFactory       $resultJsonFactory,
-    )
-    {
+    ) {
         parent::__construct($context);
         $this->salesOrderFactory = $salesOrderFactory;
-        $this->cart = $cart;
         $this->_customerSession = $customerSession;
         $this->resultJsonFactory = $resultJsonFactory;
     }
@@ -80,7 +71,7 @@ class PlaceOrder extends Action
 
         $status = $checkStatus->getStatus();
 
-        if (strpos('complete', $status) === 0) {
+        if (strpos('complete', $status) == 0) {
             $response = [
                 'result' => true,
             ];

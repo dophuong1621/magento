@@ -7,22 +7,36 @@
 
 namespace Tigren\CustomerGroupCatalog\Controller\Index;
 
+use Magento\Framework\App\Action\Action;
 use Magento\Framework\App\Action\Context;
 use Tigren\CustomerGroupCatalog\Helper\Data;
 
-class Config extends \Magento\Framework\App\Action\Action
+/**
+ * Class Config
+ * @package Tigren\CustomerGroupCatalog\Controller\Index
+ */
+class Config extends Action
 {
+    /**
+     * @var Data
+     */
     protected $helperData;
 
+    /**
+     * @param Context $context
+     * @param Data $helperData
+     */
     public function __construct(
         Context $context,
         Data    $helperData
-    )
-    {
+    ) {
         $this->helperData = $helperData;
         return parent::__construct($context);
     }
 
+    /**
+     * @return void
+     */
     public function execute()
     {
         echo $this->helperData->getGeneralConfig('enable');

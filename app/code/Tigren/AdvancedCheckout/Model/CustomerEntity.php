@@ -10,40 +10,29 @@ namespace Tigren\AdvancedCheckout\Model;
 use Magento\Framework\Model\AbstractModel;
 
 /**
- * Class GroupCat
+ * Class CustomerEntity
  * @package Tigren\AdvancedCheckout\Model
  */
 class CustomerEntity extends AbstractModel
 {
-    /**
-     *
-     */
     const ENTITY_ID = 'entity_id';
 
     /**
-     * Prefix of model events names
-     *
      * @var string
      */
     protected $_eventPrefix = 'checkout';
 
     /**
-     * Name of the event object
-     *
      * @var string
      */
     protected $_eventObject = 'checkout';
 
     /**
-     * Name of object id field
-     *
      * @var string
      */
     protected $_idFieldName = self::ENTITY_ID;
 
     /**
-     * Initialize resource model
-     *
      * @return void
      */
     protected function _construct()

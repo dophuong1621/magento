@@ -7,10 +7,8 @@
 
 namespace Tigren\CustomerGroupCatalog\Block\CustomerGroup;
 
-use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Framework\View\Element\Template;
 use Magento\Framework\View\Element\Template\Context;
-use Tigren\CustomerGroupCatalog\Model\ResourceModel\GroupCatHistory\Collection;
 use Tigren\CustomerGroupCatalog\Model\ResourceModel\GroupCatHistory\CollectionFactory;
 
 /**
@@ -20,15 +18,13 @@ use Tigren\CustomerGroupCatalog\Model\ResourceModel\GroupCatHistory\CollectionFa
 class Index extends Template
 {
     /**
-     * @param Context $context
+     * @var CollectionFactory
      */
     protected $_oderHistoryCollectionFactory;
-
 
     /**
      * @param Context $context
      * @param CollectionFactory $orderHistoryCollectionFactory
-     * @param ScopeConfigInterface $scopeConfig
      */
     public function __construct(Context $context, CollectionFactory $orderHistoryCollectionFactory)
     {
@@ -37,7 +33,7 @@ class Index extends Template
     }
 
     /**
-     * @return Collection
+     * @return mixed
      */
     public function getProductCollection()
     {

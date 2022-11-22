@@ -10,7 +10,6 @@
     <acl>
         <resources>
             <resource id="Magento_Backend::admin">
-                <!--<resource id="Magento_Backend::content">-->
                 <resource id="Tigren_CustomerGroupCatalog::job_head" title="Rule" sortOrder="100">
                     <resource id="Tigren_CustomerGroupCatalog::groupcat" title="Customer Group Catalog" sortOrder="10">
                         <resource id="Tigren_CustomerGroupCatalog::groupcat_save" title="Save Group Catalog"
@@ -19,7 +18,6 @@
                                   sortOrder="20"/>
                     </resource>
                 </resource>
-                <!--</resource>-->
             </resource>
         </resources>
     </acl>

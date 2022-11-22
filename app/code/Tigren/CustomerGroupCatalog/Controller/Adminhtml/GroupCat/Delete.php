@@ -6,8 +6,6 @@ use Magento\Backend\App\Action;
 use Magento\Backend\App\Action\Context;
 use Magento\Backend\Model\View\Result\Redirect;
 use Magento\Backend\Model\View\Result\RedirectFactory;
-use Magento\Framework\App\ResponseInterface;
-use Magento\Framework\Controller\ResultInterface;
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Ui\Component\MassAction\Filter;
 use Tigren\CustomerGroupCatalog\Model\GroupCat;
@@ -23,14 +21,17 @@ class Delete extends Action
      * @var GroupCat
      */
     private $groupCat;
+
     /**
      * @var Filter
      */
     private $filter;
+
     /**
      * @var CollectionFactory
      */
     private $collectionFactory;
+
     /**
      * @var RedirectFactory
      */
@@ -49,8 +50,7 @@ class Delete extends Action
         Filter            $filter,
         CollectionFactory $collectionFactory,
         RedirectFactory   $redirectFactory
-    )
-    {
+    ) {
         parent::__construct($context);
         $this->groupCat = $groupCat;
         $this->filter = $filter;

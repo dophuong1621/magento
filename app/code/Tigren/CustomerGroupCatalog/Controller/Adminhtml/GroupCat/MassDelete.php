@@ -32,22 +32,22 @@ class MassDelete extends Action
      */
     protected $collectionFactory;
 
-
     /**
      * @param Context $context
      * @param Filter $filter
      * @param CollectionFactory $collectionFactory
      */
-    public function __construct(Context $context, Filter $filter, CollectionFactory $collectionFactory)
-    {
+    public function __construct(
+        Context           $context,
+        Filter            $filter,
+        CollectionFactory $collectionFactory
+    ) {
         $this->filter = $filter;
         $this->collectionFactory = $collectionFactory;
         parent::__construct($context);
     }
 
     /**
-     * Execute action
-     *
      * @return Redirect
      * @throws LocalizedException|Exception
      */

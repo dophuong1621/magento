@@ -15,10 +15,6 @@ use Magento\Framework\App\Action\Action;
  */
 class Example extends Action
 {
-
-    /**
-     * @var
-     */
     protected $title;
 
     /**

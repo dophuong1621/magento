@@ -9,7 +9,6 @@ namespace Tigren\CustomerGroupCatalog\Controller\Get;
 
 use Magento\Framework\App\Action\Action;
 use Magento\Framework\App\Action\Context;
-use Magento\Framework\View\Result\PageFactory;
 use Tigren\CustomerGroupCatalog\Model\ResourceModel\GroupCat\CollectionFactory;
 
 /**
@@ -19,36 +18,24 @@ use Tigren\CustomerGroupCatalog\Model\ResourceModel\GroupCat\CollectionFactory;
 class DataRule extends Action
 {
     /**
-     * @var PageFactory
-     */
-    protected $PageFactory;
-    /**
      * @var CollectionFactory
      */
     protected $collectionFactory;
-    /**
-     * @var
-     */
-    private $dateTimeFactory;
 
     /**
      * @param Context $context
-     * @param PageFactory $pageFactory
      * @param CollectionFactory $collectionFactory
      */
     public function __construct(
         Context           $context,
-        PageFactory       $pageFactory,
         CollectionFactory $collectionFactory
-    )
-    {
+    ) {
         parent::__construct($context);
-        $this->PageFactory = $pageFactory;
         $this->collectionFactory = $collectionFactory;
     }
 
     /**
-     * @return void
+     * @return array
      */
     public function execute()
     {
@@ -58,9 +45,7 @@ class DataRule extends Action
             ->addFieldToSelect(['*'])
             ->addFieldToFilter('active', 1);
 
-        echo '<pre>';
-        print_r($collection->getData());
-        echo '<pre>';
+        return $collection->getData();
     }
 
     /**

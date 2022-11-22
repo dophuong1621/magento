@@ -41,8 +41,6 @@ class GroupCatActions extends Column
     }
 
     /**
-     * Prepare Data Source
-     *
      * @param array $dataSource
      * @return array
      */

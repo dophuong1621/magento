@@ -67,5 +67,4 @@
                     referenceTable="catalog_product_entity"
                     referenceColumn="entity_id" onDelete="CASCADE"/>
     </table>
-
 </schema>

@@ -16,20 +16,16 @@ use Tigren\CustomerGroupCatalog\Model\GroupCat;
  */
 class Collection extends AbstractCollection
 {
-
     /**
      * @var string
      */
     protected $_idFieldName = GroupCat::GROUPCAT_ID;
 
     /**
-     * Define resource model
-     *
      * @return void
      */
     protected function _construct()
     {
         $this->_init('Tigren\CustomerGroupCatalog\Model\GroupCat', 'Tigren\CustomerGroupCatalog\Model\ResourceModel\GroupCat');
     }
-
 }

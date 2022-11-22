@@ -15,35 +15,24 @@ use Magento\Framework\Model\AbstractModel;
  */
 class GroupCat extends AbstractModel
 {
-    /**
-     *
-     */
     const GROUPCAT_ID = 'rule_id';
 
     /**
-     * Prefix of model events names
-     *
      * @var string
      */
     protected $_eventPrefix = 'groupcat';
 
     /**
-     * Name of the event object
-     *
      * @var string
      */
     protected $_eventObject = 'groupcat';
 
     /**
-     * Name of object id field
-     *
      * @var string
      */
     protected $_idFieldName = self::GROUPCAT_ID;
 
     /**
-     * Initialize resource model
-     *
      * @return void
      */
     protected function _construct()

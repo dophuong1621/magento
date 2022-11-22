@@ -16,15 +16,12 @@ use Tigren\AdvancedCheckout\Model\Quote;
  */
 class Collection extends AbstractCollection
 {
-
     /**
      * @var string
      */
     protected $_idFieldName = Quote::QUOTEITEM_ID;
 
     /**
-     * Define resource model
-     *
      * @return void
      */
     protected function _construct()

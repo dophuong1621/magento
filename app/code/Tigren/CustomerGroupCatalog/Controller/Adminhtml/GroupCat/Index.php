@@ -18,9 +18,6 @@ use Magento\Framework\View\Result\PageFactory;
  */
 class Index extends Action
 {
-    /**
-     *
-     */
     const ADMIN_RESOURCE = 'Tigren_CustomerGroupCatalog::groupcat';
 
     /**
@@ -35,14 +32,13 @@ class Index extends Action
     public function __construct(
         Context     $context,
         PageFactory $resultPageFactory
-    ) {
+    )
+    {
         parent::__construct($context);
         $this->resultPageFactory = $resultPageFactory;
     }
 
     /**
-     * Index action
-     *
      * @return Page
      */
     public function execute()
