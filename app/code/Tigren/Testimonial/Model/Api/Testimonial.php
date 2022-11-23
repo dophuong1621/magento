@@ -7,6 +7,7 @@
 
 namespace Tigren\Testimonial\Model\Api;
 
+use Magento\Customer\Model\Session;
 use Tigren\Testimonial\Api\TestimonialInterface;
 use Tigren\Testimonial\Model\TestimonialFactory;
 
@@ -22,13 +23,21 @@ class Testimonial implements TestimonialInterface
     private $testimonialFactory;
 
     /**
-     * @param TestimonialFactory $testimonialFactory
+     * @var Session
      */
+    private $customerSession;
 
+    /**
+     * @param TestimonialFactory $testimonialFactory
+     * @param Session $customerSession
+     */
     public function __construct(
         TestimonialFactory $testimonialFactory,
-    ) {
+        Session            $customerSession,
+    )
+    {
         $this->testimonialFactory = $testimonialFactory;
+        $this->customerSession = $customerSession;
     }
 
     /**
@@ -58,8 +67,12 @@ class Testimonial implements TestimonialInterface
         } else {
             $testimonial = $this->testimonialFactory->create();
             $testimonial->addData($newData);
+            $attributeTestimonial = $this->customerSession->getCustomer()->getData('is_created_testimonialis');
+            if ($attributeTestimonial == 0) {
+                $attribute = $this->customerSession->getCustomer()->setData('is_created_testimonialis', 1);
+                $attribute->save();
+            }
         }
-
         $testimonial->save();
         return [
             'url_redirect' => '/testimonial/testimonial/index',

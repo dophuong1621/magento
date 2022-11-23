@@ -10,8 +10,6 @@ namespace Tigren\Testimonial\Controller\Adminhtml\Testimonial;
 use Exception;
 use Magento\Backend\App\Action;
 use Magento\Backend\Model\View\Result\Redirect;
-use Magento\Framework\App\ResponseInterface;
-use Magento\Framework\Controller\ResultInterface;
 use Magento\Framework\Exception\LocalizedException;
 use RuntimeException;
 use Tigren\Testimonial\Model\Testimonial;

@@ -39,7 +39,8 @@ class Form extends Generic
         FormFactory $formFactory,
         Store       $systemStore,
         array       $data = []
-    ) {
+    )
+    {
         $this->_systemStore = $systemStore;
         parent::__construct($context, $registry, $formFactory, $data);
     }
@@ -75,7 +76,7 @@ class Form extends Generic
 
         $fieldset = $form->addFieldset(
             'base_fieldset',
-            ['legend' => __('General Information'), 'class' => 'fieldset-wide']
+            ['legend' => __('Form Testimonial'), 'class' => 'fieldset-wide']
         );
 
         if ($model->getId()) {
@@ -85,13 +86,37 @@ class Form extends Generic
         $fieldset->addField(
             'name',
             'text',
-            ['name' => 'name', 'label' => __('Testimonial Name'), 'title' => __('Testimonial Name'), 'required' => true]
+            ['name' => 'name', 'label' => __('Name'), 'title' => __('Name'), 'required' => true]
         );
 
         $fieldset->addField(
             'email',
             'text',
-            ['name' => 'email', 'label' => __('Testimonial Email'), 'title' => __('Testimonial Email'), 'required' => true]
+            ['name' => 'email', 'label' => __('Email'), 'title' => __('Email'), 'required' => true]
+        );
+
+        $fieldset->addField(
+            'message',
+            'text',
+            ['name' => 'message', 'label' => __('Message'), 'title' => __('Message'), 'required' => true]
+        );
+
+        $fieldset->addField(
+            'company',
+            'text',
+            ['name' => 'company', 'label' => __('Company'), 'title' => __('Company'), 'required' => true]
+        );
+
+        $fieldset->addField(
+            'rating',
+            'text',
+            ['name' => 'rating', 'label' => __('Rating'), 'title' => __('Rating'), 'required' => true]
+        );
+
+        $fieldset->addField(
+            'status',
+            'text',
+            ['name' => 'status', 'label' => __('Status'), 'title' => __('Status'), 'required' => true]
         );
 
         $form->setValues($model->getData());

@@ -47,7 +47,8 @@ class PlaceOrder extends Action
         CollectionFactory $salesOrderFactory,
         Session           $customerSession,
         JsonFactory       $resultJsonFactory,
-    ) {
+    )
+    {
         parent::__construct($context);
         $this->salesOrderFactory = $salesOrderFactory;
         $this->_customerSession = $customerSession;
@@ -71,7 +72,7 @@ class PlaceOrder extends Action
 
         $status = $checkStatus->getStatus();
 
-        if (strpos('complete', $status) == 0) {
+        if (strpos('complete', $status) === 0) {
             $response = [
                 'result' => true,
             ];

@@ -15,7 +15,6 @@ use Magento\Framework\Registry;
 class Edit extends Container
 {
     /**
-     * Core registry
      * @var Registry
      */
     protected $_coreRegistry = null;
@@ -35,8 +34,6 @@ class Edit extends Container
     }
 
     /**
-     * Testimonial edit block
-     *
      * @return void
      */
     protected function _construct()
@@ -68,8 +65,6 @@ class Edit extends Container
     }
 
     /**
-     * Get header with Testimonial name
-     *
      * @return Phrase
      */
     public function getHeaderText()
@@ -82,8 +77,6 @@ class Edit extends Container
     }
 
     /**
-     * Check permission for passed action
-     *
      * @param string $resourceId
      * @return bool
      */
@@ -93,9 +86,6 @@ class Edit extends Container
     }
 
     /**
-     * Getter of url for "Save and Continue" button
-     * tab_id will be replaced by desired by JS later
-     *
      * @return string
      */
     protected function _getSaveAndContinueUrl()
