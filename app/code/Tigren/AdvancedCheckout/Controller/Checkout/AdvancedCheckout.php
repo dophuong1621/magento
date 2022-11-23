@@ -15,7 +15,6 @@ use Magento\Framework\Controller\Result\Json;
 use Magento\Framework\Controller\Result\JsonFactory;
 use Tigren\AdvancedCheckout\Model\ResourceModel\CatalogProductEntityInt\CollectionFactory as CatProductFactory;
 use Tigren\AdvancedCheckout\Model\ResourceModel\Quote\CollectionFactory;
-use Zend_Log_Exception;
 
 /**
  * Class AdvancedCheckout
@@ -51,6 +50,10 @@ class AdvancedCheckout extends Action
     /**
      * @param Cart $cart
      * @param Context $context
+     * @param CollectionFactory $quoteItemFactory
+     * @param CatProductFactory $catProductFactory
+     * @param JsonFactory $resultJsonFactory
+     * @param Product $productModel
      */
     public function __construct(
         Cart              $cart,
@@ -74,24 +77,22 @@ class AdvancedCheckout extends Action
      */
     public function execute()
     {
+        $response = [
+            'result' => false,
+        ];
         $allProduct = $this->cart->getQuote()->getAllVisibleItems();
         $idProduct = $this->getRequest()->getParam('product');
-
         $product = $this->productModel->load($idProduct);
-
         $skuProduct = $product->getSku();
-        $paramQty = $this->getRequest()->getParam('qty');
-        $qty = 1;
-        if (isset($paramQty)) {
-            $qty = $paramQty;
-        }
+
 
         $attributeProduct = $product->getData("allow_multi_order");
 
-        if ($qty == 1) {
-            if ($attributeProduct == 1) {
-                foreach ($allProduct as $item) {
-                    if ($item->getSku() == $skuProduct) {
+        if ($attributeProduct == 1) {
+            foreach ($allProduct as $item) {
+                if ($item->getSku() == $skuProduct) {
+                    $paramQty = $this->getRequest()->getParam('qty');
+                    if ($item->getQty() > 1) {
                         $data = [
                             'product_in_cart' => $skuProduct,
                         ];

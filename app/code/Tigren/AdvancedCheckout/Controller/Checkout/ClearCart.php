@@ -8,17 +8,35 @@
 namespace Tigren\AdvancedCheckout\Controller\Checkout;
 
 use Magento\Checkout\Model\Cart;
+use Magento\Checkout\Model\Session as CheckoutSession;
+use Magento\Checkout\Model\Sidebar;
 use Magento\Framework\App\Action\Action;
 use Magento\Framework\App\Action\Context;
+use Magento\Framework\App\RequestInterface;
 use Magento\Framework\Controller\Result\Json;
 use Magento\Framework\Controller\Result\JsonFactory;
+use Magento\Quote\Api\CartRepositoryInterface;
 
 /**
- * Class AdvancedCheckout
+ * Class ClearCart
  * @package Tigren\AdvancedCheckout\Controller\Checkout
  */
 class ClearCart extends Action
 {
+    /**
+     * @var CheckoutSession
+     */
+    protected $checkoutSession;
+
+    /**
+     * @var RequestInterface
+     */
+    private $request;
+
+    /**
+     * @var Sidebar
+     */
+    protected $sidebar;
 
     /**
      * @var Cart
@@ -26,23 +44,41 @@ class ClearCart extends Action
     private $cart;
 
     /**
+     * @var CartRepositoryInterface
+     */
+    protected $_cartRepository;
+
+    /**
      * @var JsonFactory
      */
     protected $resultJsonFactory;
 
     /**
+     * @param CheckoutSession $checkoutSession
      * @param Cart $cart
      * @param Context $context
      * @param JsonFactory $resultJsonFactory
+     * @param RequestInterface $request
+     * @param Sidebar $sidebar
+     * @param CartRepositoryInterface $cartRepository
      */
     public function __construct(
-        Cart        $cart,
-        Context     $context,
-        JsonFactory $resultJsonFactory,
-    ) {
-        parent::__construct($context);
+        CheckoutSession         $checkoutSession,
+        Cart                    $cart,
+        Context                 $context,
+        JsonFactory             $resultJsonFactory,
+        RequestInterface        $request,
+        Sidebar                 $sidebar,
+        CartRepositoryInterface $cartRepository,
+    )
+    {
+        $this->checkoutSession = $checkoutSession;
+        $this->_cartRepository = $cartRepository;
         $this->cart = $cart;
         $this->resultJsonFactory = $resultJsonFactory;
+        $this->request = $request;
+        $this->sidebar = $sidebar;
+        parent::__construct($context);
     }
 
     /**

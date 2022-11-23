@@ -72,7 +72,7 @@ class PlaceOrder extends Action
 
         $status = $checkStatus->getStatus();
 
-        if (strpos('complete', $status) === 0) {
+        if (strpos('complete', $status) == 0) {
             $response = [
                 'result' => true,
             ];

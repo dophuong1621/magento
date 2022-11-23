@@ -5,11 +5,11 @@ var config = {
                 'Tigren_AdvancedCheckout/js/catalog-add-to-cart': true
             }
 
-        }
+        },
     },
-    map: {
-        'Magento_Checkout/js/view/payment/default': {
-            'Tigren_AdvancedCheckout/js/action/place-order': true
-        }
-    },
+    // map: {
+    //     'Magento_Checkout/js/view/payment/default': {
+    //         'Tigren_AdvancedCheckout/js/view/payment/default': true
+    //     }
+    // },
 };

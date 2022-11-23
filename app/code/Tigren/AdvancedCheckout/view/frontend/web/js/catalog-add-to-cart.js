@@ -81,10 +81,8 @@ define([
                                                             let result;
                                                             result = response.result;
                                                             if (result === true) {
-                                                                $('#loader').hide();
-                                                                location.reload();
                                                                 popup.modal('closeModal');
-
+                                                                location.reload();
                                                             }
                                                         },
                                                         error: function (xhr, status, errorThrown) {

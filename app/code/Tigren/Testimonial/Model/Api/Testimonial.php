@@ -65,13 +65,13 @@ class Testimonial implements TestimonialInterface
             $testimonial->setData('rating', $formData['rating']);
             $testimonial->setData('status', $formData['status']);
         } else {
-            $testimonial = $this->testimonialFactory->create();
-            $testimonial->addData($newData);
             $attributeTestimonial = $this->customerSession->getCustomer()->getData('is_created_testimonialis');
             if ($attributeTestimonial == 0) {
                 $attribute = $this->customerSession->getCustomer()->setData('is_created_testimonialis', 1);
                 $attribute->save();
             }
+            $testimonial = $this->testimonialFactory->create();
+            $testimonial->addData($newData);
         }
         $testimonial->save();
         return [

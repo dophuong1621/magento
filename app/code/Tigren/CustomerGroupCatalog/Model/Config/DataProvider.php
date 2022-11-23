@@ -1,14 +1,8 @@
 <?php
-/*
- * @author    Tigren Solutions <info@tigren.com>
- * @copyright Copyright (c) 2022 Tigren Solutions <https://www.tigren.com>. All rights reserved.
- * @license   Open Software License ("OSL") v. 3.0
- */
 
 namespace Tigren\CustomerGroupCatalog\Model\Config;
 
 use Magento\Ui\DataProvider\AbstractDataProvider;
-use Tigren\CustomerGroupCatalog\Model\ResourceModel\GroupCat\Collection;
 use Tigren\CustomerGroupCatalog\Model\ResourceModel\GroupCat\CollectionFactory;
 
 /**
@@ -18,19 +12,19 @@ use Tigren\CustomerGroupCatalog\Model\ResourceModel\GroupCat\CollectionFactory;
 class DataProvider extends AbstractDataProvider
 {
     /**
-     * @var Collection
-     */
-    protected $collection;
-
-    /**
      * @var array
      */
-    protected $loadedData;
+    protected $_loadedData;
 
     /**
-     * @param $name
-     * @param $primaryFieldName
-     * @param $requestFieldName
+     * @var CollectionFactory
+     */
+    protected $collectionFactory;
+
+    /**
+     * @param string $name
+     * @param string $primaryFieldName
+     * @param string $requestFieldName
      * @param CollectionFactory $collectionFactory
      * @param array $meta
      * @param array $data
@@ -44,7 +38,7 @@ class DataProvider extends AbstractDataProvider
         array $data = []
     )
     {
-        $this->collection = $collectionFactory->create();
+        $this->collection = $collectionFactory;
         parent::__construct($name, $primaryFieldName, $requestFieldName, $meta, $data);
     }
 
@@ -53,13 +47,13 @@ class DataProvider extends AbstractDataProvider
      */
     public function getData()
     {
-        if (isset($this->loadedData)) {
-            return $this->loadedData;
+        if (isset($this->_loadedData)) {
+            return $this->_loadedData;
         }
-        $items = $this->collection->getItems();
+        $items = $this->collection->create()->getItems();
         foreach ($items as $item) {
-            $this->loadedData[$item->getId()] = $item->getData();
+            $this->_loadedData[$item->getId()] = $item->getData();
         }
-        return $this->loadedData;
+        return $this->_loadedData;
     }
 }
